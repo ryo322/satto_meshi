@@ -28,5 +28,3 @@ SNSにはサッと作れて美味しそうなレシピが流れてくること�
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-​
-## 使用素材
