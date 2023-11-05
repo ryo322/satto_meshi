@@ -1,1 +1,8 @@
 @use '~bootstrap/scss/bootstrap';
+
+.bg-logo {
+  background-image: url('/assets/logobg.jpg');
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+}

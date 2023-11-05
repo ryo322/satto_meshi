@@ -1,46 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'comments/destroy'
-  end
-  namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-    get 'users/update'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
-  namespace :public do
-    get 'tags/create'
-    get 'tags/edit'
-    get 'tags/destroy'
-    get 'tags/update'
-  end
-  namespace :public do
-    get 'comments/create'
-    get 'comments/destroy'
-  end
-  namespace :public do
-    get 'favorites/index'
-    get 'favorites/show'
-    get 'favorites/create'
-    get 'favorites/destroy'
-  end
-  namespace :public do
-    get 'homes/top'
-  end
-  namespace :public do
-    get 'users/show'
-    get 'users/edit'
-    get 'users/update'
-    get 'users/confirm'
-    get 'users/withdraw'
-  end
-  namespace :public do
-    get 'posts/index'
-    get 'posts/show'
-  end
   #管理者用
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
@@ -51,5 +9,26 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  
+  # 管理者側のルーティング
+  namespace :admin do
+    root to: 'homes#top'
+    resources :users, only: [:index, :show, :edit, :update]
+    end
+    
+# 会員側のルーティング
+  scope module: :public do
+    root to: 'homes#top'
+    get 'search' => 'searches#search'
+    get 'admin/search' => "searches#admin_search"
+    get 'about' => 'homes#about'
+    get 'users/mypage' => 'customers#show'
+    get 'users/infomation/edit' => 'users#edit'
+    patch 'users/infomation' => 'users#update'
+    get 'users/confirm' => 'users#confirm'
+    patch 'users/withdraw' => 'users#withdraw'
+    resources :posts, only: [:index, :show, :new, :create]
+    resources :orders, only: [:new, :create, :index, :show]
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
