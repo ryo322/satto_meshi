@@ -3,26 +3,26 @@ Rails.application.routes.draw do
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-  
+
   #会員用
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
+
   # 管理者側のルーティング
   namespace :admin do
     root to: 'homes#top'
     resources :users, only: [:index, :show, :edit, :update]
     end
-    
+
 # 会員側のルーティング
   scope module: :public do
     root to: 'homes#top'
     get 'search' => 'searches#search'
     get 'admin/search' => "searches#admin_search"
     get 'about' => 'homes#about'
-    get 'users/mypage' => 'customers#show'
+    get 'users/mypage' => 'users#show'
     get 'users/infomation/edit' => 'users#edit'
     patch 'users/infomation' => 'users#update'
     get 'users/confirm' => 'users#confirm'
