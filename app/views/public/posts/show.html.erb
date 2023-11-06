@@ -1,2 +1,16 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-4 mt-5">
+      <%= image_tag @post.get_post_image(400,550) %>
+    </div>
+    <div class="col-6 mt-5 text-center">
+      <h2 class="my-5"><%= @post.name %></h2>
+      <%= @post.material %></br>
+      <%= @post.introduction %>
+      <% if @user == current_user %>
+        <%= link_to "レシピを編集する", edit_post_path(@post) %>
+        <%= link_to "レシピを削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      <% end %>
+    </div>
+  </div>
+</div>

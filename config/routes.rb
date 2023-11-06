@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     patch 'users/infomation' => 'users#update'
     get 'users/confirm' => 'users#confirm'
     patch 'users/withdraw' => 'users#withdraw'
-    resources :posts, only: [:index, :show, :new, :create]
+    resources :posts 
     resources :orders, only: [:new, :create, :index, :show]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
