@@ -18,7 +18,13 @@ class Post < ApplicationRecord
     post_image.variant(resize_to_limit: [width, height]).processed
   end
   
+  #いいね
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
+  end
+  
+  #投稿レシピ検索
+  def self.looks(word)
+    @post = Post.where("name LIKE ?", "%#{word}%")
   end
 end

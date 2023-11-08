@@ -8,4 +8,10 @@ class User < ApplicationRecord
   has_many :post, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
+  
+  #ユーザー検索
+  def self.looks(word)
+    @user = User.where("name LIKE ?", "%#{word}%")
+  end
+
 end
