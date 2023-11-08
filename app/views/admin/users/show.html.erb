@@ -1,2 +1,42 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-2 my-5 bg-brown">
+      <h3>会員詳細</h3>
+    </div>
+  </div>
+  <% if flash[:notice].present? %>
+   <div class="alert alert-success">
+     <%= flash[:notice] %>
+   </div>
+  <% end %>
+  <div class="row">
+    <div class="col-10">
+      <table class="table table-borderless">
+        <tr>
+          <td>会員ID</td>
+          <td><%= @user.id %></td>
+        </tr>
+        <tr>
+          <td>ユーザー名</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td>会員ステータス</td>
+          <% if @user.is_deleted == false %>
+            <td class="text-success">有効</td>
+          <% else %>
+            <td class="tex-secondary">退会</td>
+          <% end %>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= link_to "編集する", edit_admin_user_path(@user), class:"btn btn-success btn-lg" %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

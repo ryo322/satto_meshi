@@ -1,2 +1,42 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-4 my-5 bg-brown">
+      <h3><%= @user.name %>さんの会員情報編集</h3>
+    </div>
+    <%= render 'error' %>
+  </div>
+  <div class="row">
+    <div class="col-9">
+       <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
+          <table class="table table-borderless">
+            <tr>
+              <td>会員ID</td>
+              <td><%= @user.id %></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>ユーザー名</td>
+              <td>
+               <%= f.text_field :name %>
+              </td>
+            </tr>
+            <tr>
+              <td>メールアドレス</td>
+              <td><%= f.text_field :email %></td>
+            </tr>
+            <tr>
+              <td>会員ステータス</td>
+              <td>
+            　　<%= f.radio_button :is_deleted, false %><%= f.label :有効 %>
+            　　<%= f.radio_button :is_deleted, true %><%= f.label :退会 %>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><%= f.submit "変更を保存", class: "btn btn-success btn-lg" %></td>
+            </tr>
+          </table>
+        <% end %>
+    </div>
+  </div>
+</div>
