@@ -9,7 +9,7 @@ class Public::PostsController < ApplicationController
     @post.user_id = current_user.id
     if @post.save
       flash[:notice] = "レシピを投稿しました"
-      redirect_to post_path
+      redirect_to posts_path
     else
       render "new"
     end
@@ -21,7 +21,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @user = User.find(params[:id])
+    @user = @post.user
     @comment = Comment.new
   end
 

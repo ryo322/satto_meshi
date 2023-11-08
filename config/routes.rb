@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'search' => 'searches#search'
-    get 'admin/search' => "searches#admin_search"
     get 'about' => 'homes#about'
     get 'users/mypage' => 'users#show'
     get 'users/infomation/edit' => 'users#edit'
