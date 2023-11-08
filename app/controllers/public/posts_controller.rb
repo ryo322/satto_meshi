@@ -22,6 +22,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = User.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
@@ -31,12 +32,12 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.user_id = current_user.id
-  if @post.update(post_params)
-    flash[:notice] = "レシピを更新しました"
-    redirect_to post_path(@post)
-  else
-    render "edit"
-  end
+    if @post.update(post_params)
+      flash[:notice] = "レシピを更新しました"
+      redirect_to post_path(@post)
+    else
+      render "edit"
+    end
   end
 
   def destroy
