@@ -1,2 +1,17 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-6 d-flex flex-column justify-content-center align-items-center" style="height: 200px;">
+      <%= link_to admin_users_path, class: "btn btn-light btn-block text-center" do %>
+        <i class="fa-solid fa-users fa-8x" style="color: #728597; margin-bottom: 10px"></i><br>
+        <span style="font-size: 48px;">ユーザー管理</span>
+      <% end %>
+    </div>
+    <div class="col-6 d-flex flex-column justify-content-center align-items-center" style="height: 200px;">
+      <%= link_to admin_users_path, class: "btn btn-light btn-block text-center" do %>
+        <i class="fa-solid fa-triangle-exclamation fa-8x" style="color: #728597; margin-bottom: 10px"></i><br>
+        <span style="font-size: 48px;">通報リスト</span>
+      <% end %>
+    </div>
+  </div>
+</div>
+
