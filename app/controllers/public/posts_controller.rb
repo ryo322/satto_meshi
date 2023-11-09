@@ -16,7 +16,13 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @post = Post.all
+    if params[:latest]
+      @posts = Post.latest
+    elsif params[:order_by_favorites]
+       @posts = Post.order_by_favorites
+    else
+      @posts = Post.all
+    end
   end
 
   def show

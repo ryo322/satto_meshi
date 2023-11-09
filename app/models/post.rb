@@ -5,6 +5,10 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   
+  #いいねが多い順に並び替え
+  scope :order_by_favorites, -> { order(favorites_count: :desc) }
+  #新着順に並び替え
+  scope :latest, -> {order(created_at: :desc)}
 
   validates :name, presence: true
   validates :introduction, presence: true
@@ -19,8 +23,13 @@ class Post < ApplicationRecord
   end
   
   #いいね
-  def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
+ def favorited_by?(user)
+    user && favorites.exists?(user_id: user.id)
+ end
+  
+  #いいね数の計算
+  def update_favorites_count
+    update(favorites_count: favorites.count)
   end
   
   #投稿レシピ検索
