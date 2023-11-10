@@ -8,8 +8,8 @@
       
       <table class="table table-borderless">
        <tr>
-         <td><%= link_to "退会しない", users_mypage_path, class: 'btn btn-primary btn-lg' %></td>
-         <td><%= link_to "退会する", users_withdraw_path, method: :PATCH, "data-confirm" => "本当に退会しますか？", class: 'btn btn-danger btn-lg' %></td>
+         <td><%= link_to "退会しない", user_path, class: 'btn btn-primary btn-lg' %></td>
+         <td><%= link_to "退会する", withdraw_users_path, method: :PATCH, "data-confirm" => "本当に退会しますか？", class: 'btn btn-danger btn-lg' %></td>
        </tr>
       </table>
     </div>

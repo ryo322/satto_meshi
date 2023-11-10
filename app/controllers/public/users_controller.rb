@@ -2,6 +2,12 @@ class Public::UsersController < ApplicationController
   def show
     @user = current_user
   end
+  
+  def favorited_posts
+    @user = current_user
+    @favorited_posts = @user.favorited_posts
+    render 'favorite'
+  end
 
   def edit
     @user = current_user

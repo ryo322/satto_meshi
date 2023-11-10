@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  
+  #ゲストログイン
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
   # 管理者側のルーティング
   namespace :admin do
@@ -17,19 +22,22 @@ Rails.application.routes.draw do
     end
 
 # 会員側のルーティング
-  scope module: :public do
-    root to: 'homes#top'
-    get 'search' => 'searches#search'
-    get 'about' => 'homes#about'
-    get 'users/mypage' => 'users#show'
-    get 'users/infomation/edit' => 'users#edit'
-    patch 'users/infomation' => 'users#update'
-    get 'users/confirm' => 'users#confirm'
-    patch 'users/withdraw' => 'users#withdraw'
-    resources :posts do
-      resource :favorite, only: [:create, :destroy]
-      resource :comments, only: [:create, :destroy]
-    end 
+scope module: :public do
+  root 'homes#top'
+  get 'search', to: 'searches#search'
+  get 'about', to: 'homes#about'
+
+  resources :users, only: [:show, :edit, :update] do
+    get 'favorited_posts', on: :member
+    get 'confirm', on: :member
+    patch 'withdraw', on: :collection
   end
+
+  resources :posts do
+    resource :favorite, only: [:create, :destroy]
+    resource :comments, only: [:create, :destroy]
+  end
+end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

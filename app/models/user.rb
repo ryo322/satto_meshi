@@ -9,9 +9,21 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲスト"
+    end
+  end 
+ 
   #ユーザー検索
   def self.looks(word)
     @user = User.where("name LIKE ?", "%#{word}%")
+  end
+  
+  #いいねした投稿の取得
+  def favorited_posts
+    Post.joins(:favorites).where(favorites: { user_id: self.id })
   end
 
 end
