@@ -8,7 +8,10 @@ class User < ApplicationRecord
   has_many :post, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :user_saved_posts, dependent: :destroy
+  has_many :saved_posts, through: :user_saved_posts, source: :post
   
+  #ゲスト情報
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64

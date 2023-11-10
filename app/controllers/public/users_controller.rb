@@ -1,12 +1,19 @@
 class Public::UsersController < ApplicationController
   def show
     @user = current_user
+    @saved_posts = @user.saved_posts
   end
   
   def favorited_posts
     @user = current_user
     @favorited_posts = @user.favorited_posts
     render 'favorite'
+  end
+  
+  def save_post
+    @post = Post.find(params[:post_id])
+    current_user.saved_posts << @post unless current_user.saved_posts.include?(@post)
+    redirect_to @post, notice: '投稿を保存しました。'
   end
 
   def edit
@@ -17,7 +24,7 @@ class Public::UsersController < ApplicationController
     @user = current_user
     if @user.update(user_params)
       flash[:notice] = "登録情報を変更しました"
-      redirect_to users_mypage_path
+      redirect_to user_path(@user)
     else
       render :edit
     end

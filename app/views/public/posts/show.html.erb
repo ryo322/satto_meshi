@@ -21,6 +21,13 @@
          <% end %>
        </p>
       <% end %>
+      <% if user_signed_in? %>
+       <% unless current_user.saved_posts.include?(@post) %>
+        <%= link_to "投稿を保存", save_post_user_path(current_user, post_id: @post.id), method: :post, class: "btn btn-primary" %>
+       <% else %>
+        <p>この投稿は保存済みです。</p>
+       <% end %>
+     <% end %>
       <p>コメント件数：<%= @post.comments.count %></p>
       <% @post.comments.each do |comment| %>
         <%= comment.user.name %>

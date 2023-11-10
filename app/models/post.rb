@@ -4,6 +4,8 @@ class Post < ApplicationRecord
   has_one_attached :post_image
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :saved_users, through: :user_saved_posts, source: :user
+  has_many :user_saved_posts, dependent: :destroy
   
   #いいねが多い順に並び替え
   scope :order_by_favorites, -> { order(favorites_count: :desc) }

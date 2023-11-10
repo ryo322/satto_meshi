@@ -4,6 +4,7 @@ class Public::SessionsController < Devise::SessionsController
   before_action :configure_permitted_parameters
   # before_action :configure_sign_in_params, only: [:create]
   
+  #ゲストログイン
   def guest_sign_in
    user = User.guest
    sign_in user

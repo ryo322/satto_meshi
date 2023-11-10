@@ -31,11 +31,15 @@ scope module: :public do
     get 'favorited_posts', on: :member
     get 'confirm', on: :member
     patch 'withdraw', on: :collection
+    member do
+      post 'save_post/:post_id', to: 'users#save_post', as: :save_post
+    end
   end
 
   resources :posts do
     resource :favorite, only: [:create, :destroy]
     resource :comments, only: [:create, :destroy]
+    resource :saved_post, only: [:create, :destroy]
   end
 end
 
