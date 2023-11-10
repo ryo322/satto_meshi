@@ -2,6 +2,8 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @recipe_ingredients = @post.recipe_ingredients.build ##親モデル.子モデル.buildで子モデルのインスタンス作成
+    @how_to_makes = @post.how_to_makes.build
   end
 
   def create
@@ -56,6 +58,8 @@ class Public::PostsController < ApplicationController
 private
 
   def post_params
-    params.require(:post).permit(:post_image, :name, :introduction, :material, :tag_id)
+    params.require(:post).permit(:post_image, :name, :introduction, :material, :tag_id,
+    recipe_ingredients_attributes:[:ing_name, :quantity, :_destroy], 
+    how_to_makes_attributes:[:explanation, :process_image, :order_no, :_destroy])
   end
 end
