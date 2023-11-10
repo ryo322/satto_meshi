@@ -81,7 +81,6 @@ ActiveRecord::Schema.define(version: 2023_11_10_102708) do
     t.integer "user_id", null: false
     t.string "name", null: false
     t.text "introduction", null: false
-    t.string "material", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "favorites_count", default: 0

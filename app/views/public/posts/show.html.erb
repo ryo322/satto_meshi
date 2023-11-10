@@ -1,46 +1,55 @@
 <div class="container">
   <div class="row">
     <div class="col-4 mt-5">
-      <%= image_tag @post.get_post_image(400,550) %>
+      <%= image_tag @post.get_post_image(400, 550) %>
     </div>
     <div class="col-6 mt-5 text-center">
       <h2 class="my-5"><%= @post.name %></h2>
-      <%= @post.material %></br>
       <%= @post.introduction %>
+
+      <% @post.recipe_ingredients.each do |ingredient| %>
+        <%= ingredient.ing_name %><%= ingredient.quantity %>
+      <% end %>
+
       <% if user_signed_in? %>
-      <% if @post.favorited_by?(current_user) %>
-       <p>
-        <%= link_to post_favorite_path(@post), method: :delete do %>
-          ♥<%= @post.favorites.count %> いいね
+        <% if @post.favorited_by?(current_user) %>
+          <p>
+            <%= link_to post_favorite_path(@post), method: :delete do %>
+              ♥<%= @post.favorites.count %> いいね
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            <%= link_to post_favorite_path(@post), method: :post do %>
+              ♡<%= @post.favorites.count %> いいね
+            <% end %>
+          </p>
         <% end %>
-       </p>
-      <% else %>
-       <p>
-         <%= link_to post_favorite_path(@post), method: :post do %>
-           ♡<%= @post.favorites.count %> いいね
-         <% end %>
-       </p>
-      <% end %>
-      <% if user_signed_in? %>
-       <% unless current_user.saved_posts.include?(@post) %>
-        <%= link_to "投稿を保存", save_post_user_path(current_user, post_id: @post.id), method: :post, class: "btn btn-primary" %>
-       <% else %>
-        <p>この投稿は保存済みです。</p>
-       <% end %>
-     <% end %>
-      <p>コメント件数：<%= @post.comments.count %></p>
-      <% @post.comments.each do |comment| %>
-        <%= comment.user.name %>
-        <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-      <% end %>
-      <%= form_with model: [@post, @comment] do |f| %>
-       <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-       <%= f.submit "送信する" %>
-      <% end %>
-      <% if @user == current_user %>
-        <%= link_to "レシピを編集する", edit_post_path(@post) %>
-        <%= link_to "レシピを削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-      <% end %>
+
+        <% if user_signed_in? %>
+          <% unless current_user.saved_posts.include?(@post) %>
+            <%= link_to "投稿を保存", save_post_user_path(current_user, post_id: @post.id), method: :post, class: "btn btn-primary" %>
+          <% else %>
+            <p>この投稿は保存済みです。</p>
+          <% end %>
+        <% end %>
+
+        <p>コメント件数：<%= @post.comments.count %></p>
+
+        <% @post.comments.each do |comment| %>
+          <%= comment.user.name %>
+          <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+        <% end %>
+
+        <%= form_with model: [@post, @comment] do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
+        <% end %>
+
+        <% if @user == current_user %>
+          <%= link_to "レシピを編集する", edit_post_path(@post) %>
+          <%= link_to "レシピを削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        <% end %>
       <% end %>
     </div>
   </div>
