@@ -11,6 +11,15 @@
         <%= ingredient.ing_name %><%= ingredient.quantity %>
       <% end %>
 
+     <% @post.how_to_makes.each do |make| %>
+      <%= make.explanation %>
+       <% if make.process_image.attached? %>
+         <%= image_tag make.get_process_image(285, 135) %>
+       <% end %>
+     <% end %>
+
+
+
       <% if user_signed_in? %>
         <% if @post.favorited_by?(current_user) %>
           <p>
