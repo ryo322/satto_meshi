@@ -8,7 +8,9 @@ class Post < ApplicationRecord
   has_many :user_saved_posts, dependent: :destroy
   has_many :recipe_ingredients, dependent: :destroy
   has_many :how_to_makes, dependent: :destroy
-  accepts_nested_attributes_for :recipe_ingredients, :how_to_makes, allow_destroy: true
+  
+  accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :how_to_makes, reject_if: :all_blank, allow_destroy: true
   
   #いいねが多い順に並び替え
   scope :order_by_favorites, -> { order(favorites_count: :desc) }

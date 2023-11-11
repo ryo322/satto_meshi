@@ -25,7 +25,6 @@ Rails.application.routes.draw do
 scope module: :public do
   root 'homes#top'
   get 'search', to: 'searches#search'
-  get 'about', to: 'homes#about'
 
   resources :users, only: [:show, :edit, :update] do
     get 'favorited_posts', on: :member
