@@ -1,65 +1,71 @@
 <div class="container">
   <div class="row">
-    <div class="col-4 mt-5">
-      <%= image_tag @post.get_post_image(400, 550) %>
-    </div>
-    <div class="col-6 mt-5 text-center">
-      <h2 class="my-5"><%= @post.name %></h2>
+    <div class="col-5 mt-5">
+      <%= image_tag @post.get_post_image(400, 550) %><br>
       <%= @post.introduction %>
+    </div>
 
-      <% @post.recipe_ingredients.each do |ingredient| %>
-        <%= ingredient.ing_name %><%= ingredient.quantity %>
-      <% end %>
-
-     <% @post.how_to_makes.each do |make| %>
-      <%= make.explanation %>
-       <% if make.process_image.attached? %>
-         <%= image_tag make.get_process_image(285, 135) %>
-       <% end %>
-     <% end %>
-
-
-
-      <% if user_signed_in? %>
-        <% if @post.favorited_by?(current_user) %>
-          <p>
-            <%= link_to post_favorite_path(@post), method: :delete do %>
-              ♥<%= @post.favorites.count %> いいね
-            <% end %>
-          </p>
-        <% else %>
-          <p>
-            <%= link_to post_favorite_path(@post), method: :post do %>
-              ♡<%= @post.favorites.count %> いいね
-            <% end %>
-          </p>
-        <% end %>
-
-        <% if user_signed_in? %>
-          <% unless current_user.saved_posts.include?(@post) %>
-            <%= link_to "投稿を保存", save_post_user_path(current_user, post_id: @post.id), method: :post, class: "btn btn-primary" %>
-          <% else %>
-            <p>この投稿は保存済みです。</p>
+    <div class="col-5 mt-5">
+      <div class="d-flex justify-content-between">
+        <div>
+          <h2><%= @post.name %></h2>
+        </div>
+        <div>
+          <% if @user == current_user %>
+            <%= link_to "レシピ編集", edit_post_path(@post) %>
+            <%= link_to "レシピ削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
           <% end %>
-        <% end %>
-
-        <p>コメント件数：<%= @post.comments.count %></p>
-
-        <% @post.comments.each do |comment| %>
-          <%= comment.user.name %>
-          <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-        <% end %>
-
-        <%= form_with model: [@post, @comment] do |f| %>
-          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-          <%= f.submit "送信する" %>
-        <% end %>
-
-        <% if @user == current_user %>
-          <%= link_to "レシピを編集する", edit_post_path(@post) %>
-          <%= link_to "レシピを削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-        <% end %>
+        </div>
+      </div>
+      
+      <% if user_signed_in? %>
+        <div class="d-flex justify-content-between">
+          <div>
+            <% if @post.favorited_by?(current_user) %>
+              <p><%= link_to post_favorite_path(@post), method: :delete do %>♥ いいね<% end %></p>
+            <% else %>
+              <p><%= link_to post_favorite_path(@post), method: :post do %>♡ いいね<% end %></p>
+            <% end %>
+          </div>
+          <div>
+            <% unless current_user.saved_posts.include?(@post) %>
+              <%= link_to "作るレシピに追加", save_post_user_path(current_user, post_id: @post.id), method: :post %>
+            <% else %>
+              <p>この投稿は保存済みです。</p>
+            <% end %>
+          </div>
+        </div>
       <% end %>
+      <h3>材料</h3>
+      <ul>
+        <% @post.recipe_ingredients.each do |ingredient| %>
+          <li><%= ingredient.ing_name %> ・・・・・ <%= ingredient.quantity %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
+
+  <div class="row">
+    <ol>
+      <% @post.how_to_makes.each_with_index do |make, index| %>
+        <li>
+          <%= make.explanation %>
+          <% if make.process_image.attached? %>
+            <%= image_tag make.get_process_image(285, 135) %>
+          <% end %>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+
+  <p>コメント件数：<%= @post.comments.count %></p>
+  <% @post.comments.each do |comment| %>
+    <%= comment.user.name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+  <% end %>
+
+  <%= form_with model: [@post, @comment] do |f| %>
+    <%= f.text_field :comment, placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
 </div>

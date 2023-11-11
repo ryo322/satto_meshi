@@ -32,7 +32,7 @@
           <td><%= link_to "一覧を見る", posts_path, class:"btn btn-primary" %></td>
         </tr>
         <tr>
-          <td><h3>一週間の献立</h3></td>
+          <td><h3>保存レシピ</h3></td>
           <% @saved_posts.each do |saved_post| %>
           <td><%= image_tag saved_post.get_post_image(400,550) %></td> 
           <td><%= saved_post.name %></td>
