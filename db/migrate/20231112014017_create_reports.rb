@@ -5,6 +5,7 @@ class CreateReports < ActiveRecord::Migration[6.1]
       t.integer :reported_id, null: false
       t.text :reason, null: false
       t.text :url
+      t.string :reportable_type
       t.timestamps
     end
   end

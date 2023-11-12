@@ -18,6 +18,20 @@
         <td>通報者</td>
         <td><%= @report.reporter.name %></td>
       </tr>
+      <tr>
+        <td><%= @report.confirmed ? '確認済み' : '未確認' %></td>
+        <td>
+          <% unless @report.confirmed %>
+            <%= link_to '確認する', confirm_admin_report_path(@report), method: :patch %>
+          <% end %>
+        </td>
+      </tr>
     </tbody>
   </table>
+  
+  <% if @report.reportable_type == '投稿' %>
+        <td><%= link_to "投稿の詳細", post_path(@report.reported) %></td>
+      <% elsif @report.reportable_type == 'コメント' %>
+        <td><%= link_to "コメントの詳細", post_path(@report.reported) %></td>
+      <% end %>
 </div>

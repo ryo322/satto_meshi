@@ -5,11 +5,13 @@
     <tr>
       <th>通報ID</th>
       <th>会員名</th>
+      <th>通報対象</th>
       <th>通報者</th>
+      <th>確認ステータス</th>
     </tr>
   </thead>
   <tbody>
-    <% @reports.each do |report| %>
+    <% @reports.order(created_at: :desc).each do |report| %>
       <tr>
         <td>
           <%= link_to report.id, admin_report_path(report) %>
@@ -18,7 +20,13 @@
           <%= report.reported.name %>
         </td>
         <td>
+          <%= report.reportable_type %>
+        </td>
+        <td>
           <%= report.reporter.name %>
+        </td>
+        <td>
+          <%= report.confirmed ? '確認済み' : '未確認' %>
         </td>
       </tr>
     <% end %>

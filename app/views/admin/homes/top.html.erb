@@ -7,6 +7,7 @@
       <% end %>
     </div>
     <div class="col-6 d-flex flex-column justify-content-center align-items-center" style="height: 200px;">
+      <%= "未確認の通報: #{@unconfirmed_reports_count}" %>
       <%= link_to admin_reports_path, class: "btn btn-light btn-block text-center" do %>
         <i class="fa-solid fa-triangle-exclamation fa-8x" style="color: #728597; margin-bottom: 10px"></i><br>
         <span style="font-size: 48px;">通報リスト</span>

@@ -19,8 +19,12 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     resources :users, only: [:index, :show, :edit, :update]
-    resources :reports, only: [:index, :show, :update]
-    end
+    resources :reports, only: [:index, :show, :update] do
+      member do
+        patch :confirm
+      end
+    end 
+  end
 
 # 会員側のルーティング
 scope module: :public do
@@ -39,7 +43,7 @@ scope module: :public do
 
   resources :posts do
   resource :favorite, only: [:create, :destroy]
-  resource :comments, only: [:create, :destroy]
+  resources :comments, only: [:create, :destroy]
   resource :saved_post, only: [:create, :destroy]
 end
 
