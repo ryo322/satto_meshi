@@ -1,46 +1,40 @@
 <div class="container">
-  <div class="row">
-    <div class="col-5 mt-5">
+  <div class="row mt-5">
+    <div class="col-5">
       <%= image_tag @post.get_post_image(400, 550) %><br>
       <%= @post.introduction %>
     </div>
 
-    <div class="col-5 mt-5">
-      <div class="d-flex justify-content-between">
+    <div class="col-5">
+      <div class="d-flex justify-content-between mt-3">
         <div>
           <h2><%= @post.name %></h2>
         </div>
         <div>
           <% if @user == current_user %>
             <%= link_to "レシピ編集", edit_post_path(@post) %>
-            <%= link_to "レシピ削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+            <%= link_to "レシピ削除", post_path(@post.id), method: :delete, data: { confirm: "本当に削除しますか？" } %>
           <% end %>
-        </div>
-        <div>
-         <% if user_signed_in? && @post.user != current_user %>
-           <%= link_to raw('<i class="fa-solid fa-triangle-exclamation"></i>通報'), new_user_report_path(@post.user) %>
+          <% if user_signed_in? && @post.user != current_user %>
+            <%= link_to raw('<i class="fa-solid fa-triangle-exclamation"></i>通報'), new_user_report_path(@post.user) %>
           <% end %>
         </div>
       </div>
 
       <% if user_signed_in? %>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between mt-2">
           <div>
-            <% if @post.favorited_by?(current_user) %>
-              <p><%= link_to post_favorite_path(@post), method: :delete do %>♥ いいね<% end %></p>
-            <% else %>
-              <p><%= link_to post_favorite_path(@post), method: :post do %>♡ いいね<% end %></p>
-            <% end %>
-          </div>
-          <div>
-            <% unless current_user.saved_posts.include?(@post) %>
-              <%= link_to "作るレシピに追加", save_post_user_path(current_user, post_id: @post.id), method: :post %>
-            <% else %>
-              <p>この投稿は保存済みです。</p>
-            <% end %>
+            <p>
+              <% if @post.favorited_by?(current_user) %>
+                <%= link_to post_favorite_path(@post), method: :delete do %>♥ いいね<% end %>
+              <% else %>
+                <%= link_to post_favorite_path(@post), method: :post do %>♡ いいね<% end %>
+              <% end %>
+            </p>
           </div>
         </div>
       <% end %>
+
       <h3>材料</h3>
       <ul>
         <% @post.recipe_ingredients.each do |ingredient| %>
@@ -53,7 +47,7 @@
   <div class="row mt-2">
     <ol>
       <h3>作り方</h3>
-      <% @post.how_to_makes.each_with_index do |make, index| %>
+      <% @post.how_to_makes.each do |make| %>
         <li>
           <%= make.explanation %><br>
           <% if make.process_image.attached? %>
@@ -65,12 +59,16 @@
   </div>
 
   <% if user_signed_in? %>
-    <%= form_with model: [@post, @comment] do |f| %>
-      <%= f.text_area :comment, placeholder: "コメントをここに" %>
+    <div class="row mt-2">
+      <%= form_with model: [@post, @comment] do |f| %>
+        <%= f.text_area :comment, placeholder: "コメントをここに" %>
       <%= f.submit "送信する" %>
     <% end %>
+    </div>
   <% else %>
-   <p>ログインするとコメントができるようになります</p>
+    <div class="row mt-2">
+      <p>ログインするとコメントができるようになります</p>
+    </div>
   <% end %>
 
   <div class="row">
@@ -95,7 +93,4 @@
     <% end %>
   </div>
 </div>
-
-
-
 </div>
