@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     resources :users, only: [:index, :show, :edit, :update]
+    resources :reports, only: [:index, :show, :update]
     end
 
 # 会員側のルーティング
@@ -33,13 +34,15 @@ scope module: :public do
     member do
       post 'save_post/:post_id', to: 'users#save_post', as: :save_post
     end
+    resources :reports, only: [:new, :create]
   end
 
   resources :posts do
-    resource :favorite, only: [:create, :destroy]
-    resource :comments, only: [:create, :destroy]
-    resource :saved_post, only: [:create, :destroy]
-  end
+  resource :favorite, only: [:create, :destroy]
+  resource :comments, only: [:create, :destroy]
+  resource :saved_post, only: [:create, :destroy]
+end
+
 end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

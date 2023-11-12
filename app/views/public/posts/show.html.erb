@@ -17,7 +17,7 @@
           <% end %>
         </div>
       </div>
-      
+
       <% if user_signed_in? %>
         <div class="d-flex justify-content-between">
           <div>
@@ -45,27 +45,49 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-2">
     <ol>
+      <h3>作り方</h3>
       <% @post.how_to_makes.each_with_index do |make, index| %>
         <li>
-          <%= make.explanation %>
+          <%= make.explanation %><br>
           <% if make.process_image.attached? %>
-            <%= image_tag make.get_process_image(285, 135) %>
+            <%= image_tag make.get_process_image(560, 270) %>
           <% end %>
         </li>
       <% end %>
     </ol>
   </div>
 
-  <p>コメント件数：<%= @post.comments.count %></p>
-  <% @post.comments.each do |comment| %>
-    <%= comment.user.name %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+  <% if user_signed_in? %>
+    <%= form_with model: [@post, @comment] do |f| %>
+      <%= f.text_area :comment, placeholder: "コメントをここに" %>
+      <%= f.submit "送信する" %>
+    <% end %>
+  <% else %>
+   <p>ログインするとコメントができるようになります</p>
   <% end %>
 
-  <%= form_with model: [@post, @comment] do |f| %>
-    <%= f.text_field :comment, placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
+  <div class="row">
+  <div class="col-6">
+    <p>コメント件数：<%= @post.comments.count %></p>
+    <!-- コメントを新しい順番に並び替えとコメントに番号を振る -->
+    <% @post.comments.order(created_at: :desc).each_with_index do |comment, index| %>
+      <div class="comment-box">
+        <!-- コメントの数ーindexを引いてコメントに番号を表示させる -->
+        <%= "コメント: #{(@post.comments.count - index)}" %><br>
+        <%= comment.comment %>
+        <div class="date-box">
+          <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+           <% if user_signed_in? && @user != current_user %>
+            <%= link_to "通報", new_user_report_path(@user) %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
 </div>

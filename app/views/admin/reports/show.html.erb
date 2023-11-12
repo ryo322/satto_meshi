@@ -1,0 +1,23 @@
+<h3 class="page-title">通報詳細</h3>
+
+<table class="table">
+    <tbody>
+      <tr>
+        <td>通報ID</td>
+        <td><%= @report.id %></td>
+      </tr>
+      <tr>
+        <td>通報対象</td>
+        <td><%= @report.reported.name %></td>
+      </tr>
+      <tr>
+        <td>理由</td>
+        <td><%= @report.reason %></td>
+      </tr>
+      <tr>
+        <td>通報者</td>
+        <td><%= @report.reporter.name %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
