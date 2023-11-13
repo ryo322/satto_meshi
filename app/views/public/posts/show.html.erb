@@ -9,6 +9,11 @@
       <div class="d-flex justify-content-between mt-3">
         <div>
           <h2><%= @post.name %></h2>
+          <ul>
+           <% @tags.each do |tag| %>
+          <li><%= link_to tag, posts_path(tag: tag) %></li>
+         <% end %>
+         </ul>
         </div>
         <div>
           <% if @user == current_user %>

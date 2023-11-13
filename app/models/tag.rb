@@ -1,7 +1,9 @@
 class Tag < ApplicationRecord
   
+  has_and_belongs_to_many :posts
+  
   #タグ検索
   def self.looks(word)
-    @tag = Tag.where("name LIKE ?", "%#{word}%")
+    where("name LIKE ?", "%#{word}%")
   end
 end

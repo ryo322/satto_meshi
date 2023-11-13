@@ -59,3 +59,7 @@ gem 'devise'
 gem 'image_processing', '~> 1.2'
 
 gem 'cocoon'
+
+gem 'acts-as-taggable-on'
+
+gem 'jquery-ui-rails'

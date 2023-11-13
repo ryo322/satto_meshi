@@ -27,6 +27,12 @@
               <%= f.file_field :post_image %>
             </div>
           </div>
+          <div class="col-4 mx-auto">
+            <div class="form-group">
+             <%= f.label :tag_list %>
+             <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: 'form-control' %>
+            </div>
+          </div>
 
           <!-- 材料と作り方 -->
             <div class="row mt-5">

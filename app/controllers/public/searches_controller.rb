@@ -2,13 +2,15 @@ class Public::SearchesController < ApplicationController
 
   def search
     @range = params[:range]
+    @word = params[:word]
 
-    if @range == "ユーザー"
-      @users = User.looks(params[:word])
-    elsif @range == "レシピ"
-      @posts = Post.looks(params[:word])
-    else
-      @tags = Tag.looks(params[:word])
+    case @range
+    when "ユーザー"
+      @results = User.looks(@word)
+    when "レシピ"
+      @results = Post.looks(@word)
+    when "タグ"
+      @results = Post.tagged_with(@word)
     end
   end
 end

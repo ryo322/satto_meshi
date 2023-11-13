@@ -9,6 +9,10 @@ class Post < ApplicationRecord
   has_many :recipe_ingredients, dependent: :destroy
   has_many :how_to_makes, dependent: :destroy
   
+  #タグを実装するもの
+  acts_as_taggable
+  
+  #親モデルが子モデルの属性を一緒に保存できるようにする
   accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :how_to_makes, reject_if: :all_blank, allow_destroy: true
   

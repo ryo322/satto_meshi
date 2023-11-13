@@ -18,19 +18,25 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    if params[:latest]
-      @posts = Post.latest
-    elsif params[:order_by_favorites]
+    @tags = Post.tag_counts_on(:tags).most_used(20)
+    @tags = Post.tag_counts_on(:tags).order('count DESC')     # 全タグ(Postモデルからtagsカラムを降順で取得)
+     if @tag = params[:tag]   # タグ検索用
+       @post = Post.tagged_with(params[:tag])   # タグに紐付く投稿
+     end
+     if params[:latest]
+       @posts = Post.latest
+     elsif params[:order_by_favorites]
        @posts = Post.order_by_favorites
-    else
-      @posts = Post.all
-    end
+     else
+       @posts = Post.all
+     end
   end
 
   def show
     @post = Post.find(params[:id])
     @user = @post.user
     @comment = Comment.new
+    @tags = @post.tag_counts_on(:tags) 
   end
 
   def edit
@@ -58,7 +64,7 @@ class Public::PostsController < ApplicationController
 private
 
   def post_params
-    params.require(:post).permit(:post_image, :name, :introduction, :tag_id,
+    params.require(:post).permit(:post_image, :name, :introduction, :tag_list,
     recipe_ingredients_attributes:[:ing_name, :quantity, :_destroy, :id,], 
     how_to_makes_attributes:[:explanation, :process_image, :order_no, :_destroy, :id,])
   end
