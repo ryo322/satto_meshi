@@ -1,5 +1,21 @@
 @use '~bootstrap/scss/bootstrap';
 
+body {
+  background-image: url('/assets/bg.jpeg');
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  background-image: url('/assets/logobg.jpg'); 
+  margin-top: auto;
+}
+
 .bg-logo {
   background-image: url('/assets/logobg.jpg');
    background-size: cover;

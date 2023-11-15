@@ -18,7 +18,6 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @tags = Post.tag_counts_on(:tags).most_used(20)
     @tags = Post.tag_counts_on(:tags).order('count DESC')     # 全タグ(Postモデルからtagsカラムを降順で取得)
      if @tag = params[:tag]   # タグ検索用
        @post = Post.tagged_with(params[:tag])   # タグに紐付く投稿
@@ -30,10 +29,12 @@ class Public::PostsController < ApplicationController
      else
        @posts = Post.all
      end
+    @posts = @posts.page(params[:page])
   end
 
   def show
     @post = Post.find(params[:id])
+    @total_likes = @post.cached_votes_total
     @user = @post.user
     @comment = Comment.new
     @tags = @post.tag_counts_on(:tags) 

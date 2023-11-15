@@ -1,38 +1,59 @@
 <div class="container">
-  <div class="row">
-    <div class="col-6 my-5">
-      <h2 class="bg-brown col-5">マイページ</h2>
-    </div>
+  <div class="row my-5">
+     <h2></h2>
+      <div class="col-3">
+        <%= image_tag @user.get_profile_image(300, 300) %>
+      </div>
+      <div class="col-5">
+        <%= render 'info', user: @user %>
+        <%= link_to 'いいねした投稿一覧', favorited_posts_user_path(@user) %>
+      </div>
   </div>
-
   <div class="row">
-    <div class="col-6">
-      <table class="table table-borderless">
-        <tr>
-          <td><h2>登録情報</h2></td>
-          <td><%= link_to "編集する", edit_user_path, class: 'btn btn-lg btn-success' %></td>
-        </tr>
-      </table>
-      <table class="table table-bordered">
-        <tbody>
+    <h3>投稿一覧</h3>
+    <table class="table">
+        <thead>
           <tr>
-            <td class="table-secondary w-30">ユーザー名</td>
-            <td><%= @user.name %></td>
+           <th style="width: 10%;">画像</th>
+           <th style="width: 15%;">レシピ名</th>
+           <th style="width: 20%;">一言説明</th>
+           <th style="width: 20%;">タグ</th>
+           <th style="width: 10%;">いいね数</th>
+           <th style="width: 15%;">コメント数</th>
           </tr>
+        </thead>
+        <tbody>
+          <% @user.post.each do |post| %>
           <tr>
-            <td class="table-secondary w-30">メールアドレス</td>
-            <td><%= @user.email %></td>
+           <td>
+             <%= link_to post_path(post.id) do %>
+               <%= image_tag post.get_post_image(285,135) %>
+             <% end %>
+           </td>
+           <td>
+             <%= link_to post_path(post.id) do %>
+               <%= post.name %></br>
+             <% end %>
+           </td>
+           <td>
+             <%= post.introduction %>
+           </td>
+           <td class="d-flex">
+             <% post.tags.each do |tag| %>
+               <%= button_to posts_path(tag: tag.name), method: :get, class: 'btn btn-outline-primary' do %>
+                 <%= tag.name %>
+               <% end %>
+             <% end %>
+           </td>
+           <td>
+             いいね:<%= post.cached_votes_total.to_i %>件
+           </td>
+           <td>
+             コメント件数：<%= post.comments.count %>件
+           </td>
           </tr>
         </tbody>
+        <% end %>
       </table>
-      
-      <table class="table table-borderless">
-        <tr>
-          <td><h3>投稿一覧</h3></td>
-          <td><%= link_to "一覧を見る", posts_path, class:"btn btn-primary" %></td>
-        </tr>
-      </table>
-      <%= link_to 'いいねした投稿一覧', favorited_posts_user_path(@user) %>
-    </div>
   </div>
 </div>

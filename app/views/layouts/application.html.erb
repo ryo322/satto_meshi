@@ -12,8 +12,14 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <%= render 'public/searches/form' %>
-    <%= yield %>
+    <header>
+      <%= render 'layouts/header' %>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      Copyright© Satto_Meshi. All Rights Reserved
+    </footer>
   </body>
 </html>

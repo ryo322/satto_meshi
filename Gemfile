@@ -62,7 +62,11 @@ gem 'cocoon'
 
 gem 'acts-as-taggable-on'
 
+gem 'acts_as_votable', '~> 0.14.0'
+
 gem 'jquery-ui-rails'
+
+gem 'kaminari'
 
 gem 'dotenv-rails'
 group :production do

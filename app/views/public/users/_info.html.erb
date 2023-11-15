@@ -1,0 +1,17 @@
+<table class='table'>
+  <tr>
+    <th style="width: 150px;">ユーザー名</th>
+    <td><%= user.name %></td>
+  </tr>
+  <tr>
+    <th style="width: 150px;">自己紹介</th>
+    <td><%= user.introduction %></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="text-center">
+      <%= link_to "編集する", edit_user_path, class: 'btn btn-success' %>
+    </td>
+  </tr>
+</table>
+
+  

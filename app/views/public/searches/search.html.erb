@@ -1,6 +1,8 @@
-<h2>検索結果</h2>
-
-<% if @results.present? %>
+<div class="container">
+  <div class="row">
+    <div class="col-7">
+      <h2>検索結果</h2>
+      <% if @results.present? %>
   <table class="table table-hover table-inverse">
     <thead>
       <tr>
@@ -9,8 +11,8 @@
           <th>ユーザー名</th>
           <!-- 他のユーザー情報のヘッダー -->
         <% when "レシピ" %>
+          <th>レシピ画像</th>
           <th>レシピ名</th>
-          <!-- 他のレシピ情報のヘッダー -->
         <% when "タグ" %>
           <th>タグ名</th>
           <!-- 他のタグ情報のヘッダー -->
@@ -25,8 +27,16 @@
             <td><%= result.name %></td>
             <!-- 他のユーザー情報のセル -->
           <% when "レシピ" %>
-            <td><%= result.name %></td>
-            <!-- 他のレシピ情報のセル -->
+            <td>
+              <%= link_to post_path(result.id) do %>
+                <%= image_tag result.get_post_image(285,135) %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to post_path(result.id) do %>
+               <%= result.name %></br>
+              <% end %>
+            </td>
           <% when "タグ" %>
             <td><%= result.name %></td>
             <!-- 他のタグ情報のセル -->
@@ -38,3 +48,8 @@
 <% else %>
   <p>検索結果がありません。</p>
 <% end %>
+
+    </div>
+  </div>
+</div>
+

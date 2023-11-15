@@ -1,7 +1,6 @@
 class Public::UsersController < ApplicationController
   def show
-    @user = current_user
-    @saved_posts = @user.saved_posts
+    @user = User.find(params[:id])
   end
   
   def favorited_posts
@@ -18,6 +17,7 @@ class Public::UsersController < ApplicationController
 
   def edit
     @user = current_user
+    is_matching_login_user
   end
 
   def update
@@ -31,10 +31,12 @@ class Public::UsersController < ApplicationController
   end
 
   def confirm
+    is_matching_login_user
   end
 
   def withdraw
     @user = current_user
+    is_matching_login_user
     @user.update(is_deleted: true)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
@@ -44,6 +46,13 @@ class Public::UsersController < ApplicationController
 private
   
   def user_params
-    params.require(:user).permit(:name, :email, :is_deleted)
+    params.require(:user).permit(:name, :email, :introduction, :profile_image)
+  end
+  
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to root_path
+    end
   end
 end

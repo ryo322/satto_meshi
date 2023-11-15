@@ -9,6 +9,9 @@ class Post < ApplicationRecord
   has_many :recipe_ingredients, dependent: :destroy
   has_many :how_to_makes, dependent: :destroy
   
+  #ページネーションで１ページに10件表示する
+  paginates_per 10
+  
   #タグを実装するもの
   acts_as_taggable
   
@@ -30,16 +33,6 @@ class Post < ApplicationRecord
       post_image.attach(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpg')
     end
     post_image.variant(resize_to_limit: [width, height]).processed
-  end
-  
-  #いいね
- def favorited_by?(user)
-    user && favorites.exists?(user_id: user.id)
- end
-  
-  #いいね数の計算
-  def update_favorites_count
-    update(favorites_count: favorites.count)
   end
   
   #投稿レシピ検索
