@@ -1,10 +1,20 @@
-<h2>いいねした投稿一覧</h2>
-<% if @favorited_posts.any? %>
-  <ul>
-    <% @favorited_posts.each do |post| %>
-      <li><%= link_to post.name, post_path(post) %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>いいねした投稿はありません。</p>
-<% end %>
+<div class="container">
+  <div class="row my-5">
+    <% if @favorited_posts.any? %>
+      <h2><%= @user.name %>さんがいいねした投稿一覧</h2>
+        <table class="table">
+          <thead>
+            <%= render 'public/posts/post_thead' %>
+          </thead>
+          <tbody>
+            <% @favorited_posts.each do |post| %>
+              <%= render partial: 'public/posts/post_tbody', locals: { post: post } %>
+            <% end %>
+          </tbody>
+        </table>
+     <% else %>
+       <h2>いいねした投稿はありません</h2>
+     <% end %>
+  </div>
+</div>
+

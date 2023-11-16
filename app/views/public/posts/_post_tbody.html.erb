@@ -1,0 +1,28 @@
+<tr>
+  <td>
+    <%= link_to post_path(post.id) do %>
+      <%= image_tag post.get_post_image(285,135) %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to post_path(post.id) do %>
+      <%= post.name %></br>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to post.user.name, user_path(post.user) %>
+  </td>
+  <td class="d-flex flex-wrap">
+    <% post.tags.each do |tag| %>
+      <%= link_to posts_path(tag: tag.name), method: :get, class: 'mb-2 mr-2' do %>
+        #<%= tag.name %>
+      <% end %>
+    <% end %>
+  </td>
+  <td>
+    いいね:<%= post.favorites_count %>件
+  </td>
+  <td>
+    コメント件数：<%= post.comments.count %>件
+  </td>
+</tr>

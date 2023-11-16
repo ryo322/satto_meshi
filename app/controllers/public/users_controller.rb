@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
   end
   
   def favorited_posts
-    @user = current_user
+    @user = User.find(params[:id])
     @favorited_posts = @user.favorited_posts
     render 'favorite'
   end
