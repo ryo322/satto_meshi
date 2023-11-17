@@ -1,78 +1,74 @@
 <div class="container">
+  <%= render 'error' %>
   <div class="row">
-    <div class="col-3 bg-brown">
+    <div class="col-3 mt-5">
       <h3>レシピ編集</h3>
     </div>
-    <%= render 'error' %>
   </div>
 
-  <div class="row">
-    <div class="recipe-post">
-      <%= form_with(model: @post, method: :patch) do |f| %>
-        <div class="row">
-          <div class="col-4">
-            <div class="recipe-ingredients form-section">
-              <div class="mx-auto">
-                <%= f.label :name, "料理名", style: "margin-right:75px;" %>
-                <%= f.text_field :name, placeholder:"料理名", size: "31x1" %>
-              </div>
-            </div>
-            <div class="form-section mx-auto">
-              <%= f.label :introduction, "説明", style: "margin-right:75px;" %>
-              <%= f.text_area :introduction, class: "form-control", placeholder: "紹介文を入力" %>
-            </div>
-            <div class="form-section mx-auto">
-              <%= f.label :post_image, "料理画像", style: "margin-right:75px;" %>
-              <%= f.file_field :post_image %>
-            </div>
-          </div>
-          <div class="col ml-5">
-            <div class="form-group">
-             <%= f.label :tag_list, "タグ（タグを編集しないときでも「,」で区切ってください）" %>
-             <%= f.text_field :tag_list, class: 'form-control' %>
-            </div>
-          </div>
-            <div class="row mt-5">
-              <div class="col-md-6">
-                <div class="recipe-ingredients form-section">
-                  <div class="mx-auto">
-                    <h2>材料</h2>
-                    <div id="recipe-ingredients">
-                      <%= link_to_add_association "+材料を追加", f, :recipe_ingredients,
-                        data: {
-                          association_insertion_node: '#recipe-ingredients',
-                          association_insertion_method: 'after'
-                        } %>
-                      <%= f.fields_for :recipe_ingredients do |t| %>
-                        <%= render "public/posts/recipe_ingredient_fields", f: t %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mx-auto form-section">
-                  <h2>作り方</h2>
-                  <div id="how-to-makes">
-                    <%= link_to_add_association "+工程を追加", f, :how_to_makes,
-                      data: {
-                        association_insertion_node: '#how-to-makes',
-                        association_insertion_method: 'after'
-                      } %>
-                    <%= f.fields_for :how_to_makes do |t| %>
-                      <%= render "public/posts/how_to_make_fields", f: t %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <div class="row my-5 justify-content-end">
-          <%= f.submit "レシピを編集する", class:"btn btn-lg btn-success" %>
+  <%= form_with(model: @post, local: true) do |f| %>
+    <div class="row">
+      <div class="col-4">
+        <div class="mx-auto">
+          <%= f.label :name, "料理名", style: "margin-right:75px;" %>
+          <%= f.text_field :name, placeholder: "料理名", size: "31x1" %>
         </div>
-      <% end %>
+        <div class="form-section mx-auto">
+          <%= f.label :introduction, "説明", style: "margin-right:75px;" %>
+          <%= f.text_area :introduction, class: "form-control", placeholder: "紹介文を入力" %>
+        </div>
+        <div class="form-section mx-auto">
+          <%= f.label :post_image, "料理画像", style: "margin-right:75px;" %>
+          <%= f.file_field :post_image %>
+        </div>
+      </div>
+
+      <div class="col ml-5">
+        <div class="form-group">
+          <%= f.label :tag_list, "タグ（複数登録する場合は「,」で区切ってください）" %>
+          <%= f.text_field :tag_list, class: 'form-control' %>
+        </div>
+      </div>
     </div>
-  </div>
+
+    <div class="row mt-5">
+      <div class="col-6">
+        <div class="recipe-ingredients form-section">
+          <div class="mx-auto">
+            <h2>材料</h2>
+            <div id="recipe-ingredients">
+              <%= link_to_add_association "+材料を追加", f, :recipe_ingredients,
+                data: {
+                  association_insertion_node: '#recipe-ingredients',
+                  association_insertion_method: 'append'
+                } %>
+              <%= f.fields_for :recipe_ingredients do |t| %>
+                <%= render "public/posts/recipe_ingredient_fields", f: t %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="mx-auto form-section">
+          <h2>作り方</h2>
+          <div id="how-to-makes">
+            <%= link_to_add_association "+工程を追加", f, :how_to_makes,
+              data: {
+                association_insertion_node: '#how-to-makes',
+                association_insertion_method: 'append'
+              } %>
+            <%= f.fields_for :how_to_makes do |t| %>
+              <%= render "public/posts/how_to_make_fields", f: t %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-5 justify-content-end">
+      <%= f.submit "レシピを編集する", class:"btn btn-lg btn-success" %>
+    </div>
+  <% end %>
 </div>

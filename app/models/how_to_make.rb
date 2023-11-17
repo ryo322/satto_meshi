@@ -8,5 +8,5 @@ class HowToMake < ApplicationRecord
     if process_image.present? && process_image.attached?
       process_image.variant(resize_to_limit: [width, height]).processed
     end
-  end
+ end
 end

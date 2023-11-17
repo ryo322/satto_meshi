@@ -1,0 +1,35 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: "ユーザー名"
+        email: "メールアドレス"
+      post:
+        name: "レシピ名"
+      recipe_ingredient:
+        ing_name: "材料"
+        quantity: "分量"
+      how_to_make:
+        explanation: "作り方"
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "を入力してください"
+            email:
+              blank: "を入力してください"
+        post:
+          attributes:
+            name:
+              blank: "を入力してください"
+      recipe_ingredient:
+        attributes:
+          ing_name:
+            blank: "を入力するか、フォームを削除してください"
+          quantity:
+            blank: "を入力するか、フォームを削除してください"
+      how_to_make:
+        attributes:
+          explanation:
+            blank: "を入力するか、フォームを削除してください"

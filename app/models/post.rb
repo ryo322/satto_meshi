@@ -25,7 +25,7 @@ class Post < ApplicationRecord
   scope :latest, -> {order(created_at: :desc)}
 
   validates :name, presence: true
-  validates :introduction, presence: true
+  
 
   def get_post_image(width, height)
     unless post_image.attached?

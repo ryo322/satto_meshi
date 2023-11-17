@@ -66,8 +66,10 @@ class Public::PostsController < ApplicationController
 private
 
   def post_params
-    params.require(:post).permit(:post_image, :name, :introduction, :tag_list,
-    recipe_ingredients_attributes:[:ing_name, :quantity, :_destroy, :id,], 
-    how_to_makes_attributes:[:explanation, :process_image, :order_no, :_destroy, :id,])
+  params.require(:post).permit(
+    :post_image, :name, :introduction, :tag_list,
+    recipe_ingredients_attributes: [:ing_name, :quantity, :_destroy, :id],
+    how_to_makes_attributes: [:explanation, :process_image, :order_no, :_destroy, :id]
+   )
   end
 end
