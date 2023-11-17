@@ -21,10 +21,6 @@
         <% end %>
       </tbody>
     </table>
-<<<<<<< HEAD
-    <%= paginate @posts %>
-=======
->>>>>>> 5780bfa61166510bab9266abd12c1c258bcfba08
   </div>
 </div>
 

@@ -8,14 +8,14 @@
       <tr>
         <% case @range %>
         <% when "ユーザー" %>
+          <th>プロフィール画像</th>
           <th>ユーザー名</th>
-          <!-- 他のユーザー情報のヘッダー -->
         <% when "レシピ" %>
           <th>レシピ画像</th>
           <th>レシピ名</th>
         <% when "タグ" %>
-          <th>タグ名</th>
-          <!-- 他のタグ情報のヘッダー -->
+          <th>レシピ画像</th>
+          <th>レシピ名</th>
         <% end %>
       </tr>
     </thead>
@@ -24,8 +24,12 @@
         <tr>
           <% case @range %>
           <% when "ユーザー" %>
+            <td>
+              <%= link_to user_path(result.id) do %>
+                <%= image_tag result.get_profile_image(285,135) %>
+              <% end %>
+            </td>
             <td><%= result.name %></td>
-            <!-- 他のユーザー情報のセル -->
           <% when "レシピ" %>
             <td>
               <%= link_to post_path(result.id) do %>
@@ -38,8 +42,16 @@
               <% end %>
             </td>
           <% when "タグ" %>
-            <td><%= result.name %></td>
-            <!-- 他のタグ情報のセル -->
+            <td>
+              <%= link_to post_path(result.id) do %>
+                <%= image_tag result.get_post_image(285,135) %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to post_path(result.id) do %>
+               <%= result.name %></br>
+              <% end %>
+            </td>
           <% end %>
         </tr>
       <% end %>

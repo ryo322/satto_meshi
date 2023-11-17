@@ -36,7 +36,6 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @total_likes = @post.cached_votes_total
     @user = @post.user
     @comment = Comment.new
     @tags = @post.tag_counts_on(:tags) 

@@ -28,11 +28,7 @@
           </div>
           <div class="col ml-5">
             <div class="form-group">
-<<<<<<< HEAD
              <%= f.label :tag_list, "タグ（タグを編集しないときでも「,」で区切ってください）" %>
-=======
-             <%= f.label :tag_list, "タグ（複数登録する場合は「,」で区切ってください）" %>
->>>>>>> 5780bfa61166510bab9266abd12c1c258bcfba08
              <%= f.text_field :tag_list, class: 'form-control' %>
             </div>
           </div>
