@@ -1,16 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-2 my-5 bg-brown">
+    <div class="col-2 mt-5">
       <h3>会員詳細</h3>
     </div>
   </div>
-  <% if flash[:notice].present? %>
-   <div class="alert alert-success">
-     <%= flash[:notice] %>
-   </div>
-  <% end %>
+  <%= render 'flash/notice' %>
   <div class="row">
-    <div class="col-10">
+    <div class="col-6">
       <table class="table table-borderless">
         <tr>
           <td>会員ID</td>

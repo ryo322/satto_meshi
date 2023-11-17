@@ -1,5 +1,7 @@
-<div class="container mt-5">
-  <div class="row under-line">
+<div class="container">
+  <%= render 'flash/notice' %>
+  <%= render 'alert' %>
+  <div class="row my-5 under-line">
     <div class="col-6">
       <h2>レシピ名：<%= @post.name %></h2>
       <p>登録タグ <i class="fa-solid fa-tags"></i></p>
@@ -10,11 +12,7 @@
       </div>
     </div>
     <div class="col-2">
-<<<<<<< HEAD
       <% if user_signed_in? && @post.user != current_user %>
-=======
-      <% if user_signed_in? %>
->>>>>>> 5780bfa61166510bab9266abd12c1c258bcfba08
         <div class="d-flex justify-content-between mt-2">
           <p>
             <% if @post.favorited_by?(current_user) %>
@@ -39,15 +37,9 @@
     </div>
   </div>
 
-<<<<<<< HEAD
   <div class="row my-5 under-line">
     <div class="col-4">
       <%= image_tag @post.get_post_image(350, 350), class: "img-fluid" %><br>
-=======
-  <div class="row mt-5 under-line">
-    <div class="col-5">
-      <%= image_tag @post.get_post_image(400, 550), class: "img-fluid" %><br>
->>>>>>> 5780bfa61166510bab9266abd12c1c258bcfba08
       <%= @post.introduction %>
     </div>
 

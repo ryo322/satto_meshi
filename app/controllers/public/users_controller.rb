@@ -9,12 +9,6 @@ class Public::UsersController < ApplicationController
     @favorited_posts = @user.favorited_posts
     render 'favorite'
   end
-  
-  def save_post
-    @post = Post.find(params[:post_id])
-    current_user.saved_posts << @post unless current_user.saved_posts.include?(@post)
-    redirect_to @post, notice: '投稿を保存しました。'
-  end
 
   def edit
     @user = current_user

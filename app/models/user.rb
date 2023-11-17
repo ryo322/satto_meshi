@@ -8,10 +8,11 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :user_saved_posts, dependent: :destroy
-  has_many :saved_posts, through: :user_saved_posts, source: :post
   has_many :reports, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
   has_many :reverse_of_reports, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
+  
+  validates :name, presence: true
+  validates :email, presence: true
   
   paginates_per 5
   

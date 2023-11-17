@@ -1,6 +1,6 @@
 <div class="container">
+   <%= render 'flash/notice' %>
   <div class="row my-5">
-    <h2></h2>
     <div class="col-3">
       <%= image_tag @user.get_profile_image(300, 300), class: "img-fluid" %>
     </div>
@@ -21,10 +21,6 @@
         <% end %>
       </tbody>
     </table>
-<<<<<<< HEAD
-    <%= paginate @posts %>
-=======
->>>>>>> 5780bfa61166510bab9266abd12c1c258bcfba08
   </div>
 </div>
 

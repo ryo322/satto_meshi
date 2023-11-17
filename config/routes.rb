@@ -35,9 +35,6 @@ scope module: :public do
     get 'favorited_posts', on: :member
     get 'confirm', on: :member
     patch 'withdraw', on: :collection
-    member do
-      post 'save_post/:post_id', to: 'users#save_post', as: :save_post
-    end
     resources :reports, only: [:new, :create]
   end
 

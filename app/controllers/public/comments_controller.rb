@@ -6,7 +6,7 @@ class Public::CommentsController < ApplicationController
     if comment.save
       redirect_to post_path(post)
     else
-      flash[:alert] = "コメントの保存に失敗しました。"
+      flash[:alert] = "コメントの投稿に失敗しました。"
       redirect_to post_path(post)
     end
   end
