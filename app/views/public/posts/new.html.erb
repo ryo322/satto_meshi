@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-3 bg-brown">
+    <div class="col-3 mt-5">
       <h3>レシピ投稿</h3>
     </div>
     <%= render 'error' %>
@@ -10,8 +10,7 @@
     <div class="recipe-post">
       <%= form_with(model: @post, local: true) do |f| %>
         <div class="row">
-          <!-- 料理名と一言紹介 -->
-          <div class="col-md-4">
+          <div class="col-4">
             <div class="recipe-ingredients form-section">
               <div class="mx-auto">
                 <%= f.label :name, "料理名", style: "margin-right:75px;" %>
@@ -27,16 +26,14 @@
               <%= f.file_field :post_image %>
             </div>
           </div>
-          <div class="col-4 mx-auto">
+          <div class="col ml-5">
             <div class="form-group">
-             <%= f.label :tag_list %>
-             <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: 'form-control' %>
+             <%= f.label :tag_list, "タグ（複数登録する場合は「,」で区切ってください）" %>
+             <%= f.text_field :tag_list, class: 'form-control' %>
             </div>
           </div>
-
-          <!-- 材料と作り方 -->
             <div class="row mt-5">
-              <div class="col-md-6">
+              <div class="col-6">
                 <div class="recipe-ingredients form-section">
                   <div class="mx-auto">
                     <h2>材料</h2>
@@ -44,7 +41,7 @@
                       <%= link_to_add_association "+材料を追加", f, :recipe_ingredients,
                         data: {
                           association_insertion_node: '#recipe-ingredients',
-                          association_insertion_method: 'after'
+                          association_insertion_method: 'append'
                         } %>
                       <%= f.fields_for :recipe_ingredients do |t| %>
                         <%= render "public/posts/recipe_ingredient_fields", f: t %>
@@ -53,15 +50,14 @@
                   </div>
                 </div>
               </div>
-
-              <div class="col-md-6">
+              <div class="col-6">
                 <div class="mx-auto form-section">
                   <h2>作り方</h2>
                   <div id="how-to-makes">
                     <%= link_to_add_association "+工程を追加", f, :how_to_makes,
                       data: {
                         association_insertion_node: '#how-to-makes',
-                        association_insertion_method: 'after'
+                        association_insertion_method: 'append'
                       } %>
                     <%= f.fields_for :how_to_makes do |t| %>
                       <%= render "public/posts/how_to_make_fields", f: t %>
@@ -72,8 +68,8 @@
             </div>
           </div>
 
-        <div class="col mt-2">
-          <%= f.submit "投稿", class:"btn btn-success" %>
+        <div class="row my-5 justify-content-end">
+          <%= f.submit "レシピを投稿する", class:"btn btn-lg btn-success" %>
         </div>
       <% end %>
     </div>

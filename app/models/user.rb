@@ -5,13 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_one_attached :profile_image
-  has_many :post, dependent: :destroy
+  has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :user_saved_posts, dependent: :destroy
   has_many :saved_posts, through: :user_saved_posts, source: :post
   has_many :reports, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
   has_many :reverse_of_reports, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
+  
+  paginates_per 5
   
   def get_profile_image(width, height)
     unless profile_image.attached?

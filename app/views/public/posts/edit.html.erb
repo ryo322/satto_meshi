@@ -10,8 +10,7 @@
     <div class="recipe-post">
       <%= form_with(model: @post, method: :patch) do |f| %>
         <div class="row">
-          <!-- 料理名と一言紹介 -->
-          <div class="col-md-4">
+          <div class="col-4">
             <div class="recipe-ingredients form-section">
               <div class="mx-auto">
                 <%= f.label :name, "料理名", style: "margin-right:75px;" %>
@@ -27,8 +26,12 @@
               <%= f.file_field :post_image %>
             </div>
           </div>
-
-          <!-- 材料と作り方 -->
+          <div class="col ml-5">
+            <div class="form-group">
+             <%= f.label :tag_list, "タグ（タグを編集しないときでも「,」で区切ってください）" %>
+             <%= f.text_field :tag_list, class: 'form-control' %>
+            </div>
+          </div>
             <div class="row mt-5">
               <div class="col-md-6">
                 <div class="recipe-ingredients form-section">
@@ -66,8 +69,8 @@
             </div>
           </div>
 
-        <div class="col mt-2">
-          <%= f.submit "編集する", class:"btn btn-success" %>
+        <div class="row my-5 justify-content-end">
+          <%= f.submit "レシピを編集する", class:"btn btn-lg btn-success" %>
         </div>
       <% end %>
     </div>

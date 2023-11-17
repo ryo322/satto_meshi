@@ -9,6 +9,8 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    tag_list = params[:post][:tag_list].split(/[、,]/) #タグ設定の時に、と,で区切られるように設定
+    @post.tag_list = tag_list
     if @post.save
       flash[:notice] = "レシピを投稿しました"
       redirect_to posts_path

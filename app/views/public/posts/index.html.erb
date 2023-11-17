@@ -5,47 +5,13 @@
       <p><%= link_to '新しい順', posts_path(latest: "true") %> ｜ <%= link_to '評価の高い順', posts_path(order_by_favorites: "true") %></p>
       <table class="table">
         <thead>
-          <tr>
-           <th style="width: 10%;">画像</th>
-           <th style="width: 15%;">レシピ名</th>
-           <th style="width: 20%;">投稿者</th>
-           <th style="width: 20%;">タグ</th>
-           <th style="width: 10%;">いいね数</th>
-           <th style="width: 15%;">コメント数</th>
-          </tr>
+          <%= render 'post_thead' %>
         </thead>
         <tbody>
           <% @posts.each do |post| %>
-          <tr>
-           <td>
-             <%= link_to post_path(post.id) do %>
-               <%= image_tag post.get_post_image(285,135) %>
-             <% end %>
-           </td>
-           <td>
-             <%= link_to post_path(post.id) do %>
-               <%= post.name %></br>
-             <% end %>
-           </td>
-           <td>
-             <%= link_to post.user.name, user_path(post.user) %>
-           </td>
-           <td class="d-flex">
-             <% post.tags.each do |tag| %>
-               <%= button_to posts_path(tag: tag.name), method: :get, class: 'btn btn-outline-primary' do %>
-                 <%= tag.name %>
-               <% end %>
-             <% end %>
-           </td>
-           <td>
-             いいね:<%= post.cached_votes_total.to_i %>件
-           </td>
-           <td>
-             コメント件数：<%= post.comments.count %>件
-           </td>
-          </tr>
+            <%= render partial: 'post_tbody', locals: { post: post } %>
+          <% end %>
         </tbody>
-        <% end %>
       </table>
       <%= paginate @posts %>
     </div>
