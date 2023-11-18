@@ -12,6 +12,9 @@
   </head>
 
   <body>
+    <div id="loading">
+      <img class="spinner" src="/assets/35.gif" alt="" />
+    </div>
     <header>
       <%= render 'layouts/header' %>
     </header>
@@ -19,7 +22,9 @@
       <%= yield %>
     </main>
     <footer>
-      Copyright© Satto_Meshi. All Rights Reserved
+      <div class="text-center my-3">
+        <p>Copyright© Satto_Meshi. All Rights Reserved</p>
+      </div>
     </footer>
   </body>
 </html>

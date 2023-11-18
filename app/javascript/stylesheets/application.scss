@@ -1,5 +1,25 @@
 @use '~bootstrap/scss/bootstrap';
 
+#loading {
+  transition: all ls;
+  background-color: #fff;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.spinner {
+  width: 200px;
+  height: 200px;
+}
+
+.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
 body {
   background-image: url('/assets/bg.jpeg');
   display: flex;
@@ -12,15 +32,37 @@ main {
 }
 
 footer {
-  background-image: url('/assets/logobg.jpg'); 
+  background-image: url('/assets/logobg.jpg');
   margin-top: auto;
+}
+
+.main-visual {
+  width: 100%;
+  height: 300px;
+  background-image: url('/assets/mv.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.main-visual-content {
+  width: 60%;
+  height: 300px;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  padding-top: 40px;
+  position: center;
+}
+
+.main-visual-text {
+  color: #fff;
+  line-height: 2;
 }
 
 .bg-logo {
   background-image: url('/assets/logobg.jpg');
-   background-size: cover;
-   background-position: center;
-   background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .top-bg {
@@ -33,6 +75,17 @@ footer {
   background-size: 50% 75%;
   font-size: 16px;
   line-height: 2;
+}
+
+.wood {
+  background-image: url('/assets/wood.jpeg');
+  color: #fff;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
 }
 
 .comment-box {

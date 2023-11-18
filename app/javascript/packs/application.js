@@ -24,3 +24,5 @@ import "cocoon"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import "./script"

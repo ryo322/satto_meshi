@@ -1,5 +1,6 @@
 <div class="container">
   <%= render 'error' %>
+
   <div class="row">
     <div class="col-3 mt-5">
       <h3>レシピ投稿</h3>
@@ -13,10 +14,12 @@
           <%= f.label :name, "料理名", style: "margin-right:75px;" %>
           <%= f.text_field :name, placeholder: "料理名", size: "31x1" %>
         </div>
+
         <div class="form-section mx-auto">
           <%= f.label :introduction, "説明", style: "margin-right:75px;" %>
           <%= f.text_area :introduction, class: "form-control", placeholder: "紹介文を入力" %>
         </div>
+
         <div class="form-section mx-auto">
           <%= f.label :post_image, "料理画像", style: "margin-right:75px;" %>
           <%= f.file_field :post_image %>
@@ -42,8 +45,21 @@
                   association_insertion_node: '#recipe-ingredients',
                   association_insertion_method: 'append'
                 } %>
-              <%= f.fields_for :recipe_ingredients do |t| %>
-                <%= render "public/posts/recipe_ingredient_fields", f: t %>
+
+              <%= f.fields_for :recipe_ingredients do |f| %>
+                <div class="nested-fields">
+                  <div class="row mx-auto">
+                    <div class="col-6">
+                      <%= f.text_field :ing_name, class: "form-control", placeholder: "材料" %>
+                    </div>
+                    <div class="col-3">
+                      <%= f.text_field :quantity, class: "form-control", placeholder: "分量" %>
+                    </div>
+                    <div class="offset-1 col-2 px-0 w-auto">
+                      <%= link_to_remove_association "削除", f %>
+                    </div>
+                  </div>
+                </div>
               <% end %>
             </div>
           </div>
@@ -59,8 +75,20 @@
                 association_insertion_node: '#how-to-makes',
                 association_insertion_method: 'append'
               } %>
-            <%= f.fields_for :recipe_ingredients do |recipe_ingredient_form| %>
-              <%= render 'public/posts/recipe_ingredient_fields', f: recipe_ingredient_form %>
+
+            <%= f.fields_for :how_to_makes do |f| %>
+              <div class="nested-fields">
+                <div class="row mx-auto">
+                  <div class="col-9">
+                    <%= f.text_area :explanation, class: "form-control", placeholder: "調理工程" %>
+                    <%= f.file_field :process_image %><br>
+                    <%= "　　" %>
+                  </div>
+                  <div class="offset-1 col-2 px-0 w-auto">
+                    <%= link_to_remove_association "削除", f %>
+                  </div>
+                </div>
+              </div>
             <% end %>
           </div>
         </div>
@@ -72,4 +100,3 @@
     </div>
   <% end %>
 </div>
-
