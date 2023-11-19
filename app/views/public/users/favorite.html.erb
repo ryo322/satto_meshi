@@ -3,7 +3,7 @@
     <% if @favorited_posts.any? %>
       <h2><%= @user.name %>さんがいいねした投稿一覧</h2>
         <table class="table">
-          <thead>
+          <thead class="bg-light">
             <%= render 'public/posts/post_thead' %>
           </thead>
           <tbody>

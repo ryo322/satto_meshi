@@ -69,7 +69,7 @@ private
   params.require(:post).permit(
     :post_image, :name, :introduction, :tag_list,
     ingredients_attributes: [:name, :quantity, :_destroy, :id],
-    instructions_attributes: [:step, :process_image, :order_no, :_destroy, :id]
+    instructions_attributes: [:step, :process_image, :_destroy, :id]
    )
   end
 end

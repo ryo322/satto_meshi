@@ -14,9 +14,7 @@
   </td>
   <td class="d-flex flex-wrap">
     <% post.tags.each do |tag| %>
-      <%= link_to posts_path(tag: tag.name), method: :get, class: 'mb-2 mr-2' do %>
-        #<%= tag.name %>
-      <% end %>
+      #<%= tag.name %>
     <% end %>
   </td>
   <td>

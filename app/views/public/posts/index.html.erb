@@ -2,10 +2,10 @@
   <%= render 'flash/notice' %>
   <div class="row">
     <div class="col">
-      <h2 class="mt-5 text-left bg-brown">レシピ一覧</h2>
+      <h2 class="mt-5 text-left bg-brown">レシピ一覧<i class="fa-solid fa-utensils"></i></h2>
       <p><%= link_to '新しい順', posts_path(latest: "true") %> ｜ <%= link_to '評価の高い順', posts_path(order_by_favorites: "true") %></p>
       <table class="table">
-        <thead>
+        <thead class="bg-light">
           <%= render 'post_thead' %>
         </thead>
         <tbody>
