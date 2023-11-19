@@ -2,14 +2,14 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @post.recipe_ingredients.build
-    @post.how_to_makes.build
+    @post.ingredients.build
+    @post.instructions.build
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    tag_list = params[:post][:tag_list].split(/[,]/) #タグ設定の時に,で区切られるように設定
+    tag_list = params[:post][:tag_list].split(/[、]/) #タグ設定の時に、で区切られるように設定
     @post.tag_list = tag_list
     if @post.save
       flash[:notice] = "レシピを投稿しました"
@@ -68,8 +68,8 @@ private
   def post_params
   params.require(:post).permit(
     :post_image, :name, :introduction, :tag_list,
-    recipe_ingredients_attributes: [:ing_name, :quantity, :_destroy, :id],
-    how_to_makes_attributes: [:explanation, :process_image, :order_no, :_destroy, :id]
+    ingredients_attributes: [:name, :quantity, :_destroy, :id],
+    instructions_attributes: [:step, :process_image, :order_no, :_destroy, :id]
    )
   end
 end

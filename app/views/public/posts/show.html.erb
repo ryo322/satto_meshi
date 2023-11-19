@@ -46,8 +46,8 @@
     <div class="col-4">
       <h3>材料</h3>
       <ul>
-        <% @post.recipe_ingredients.each do |ingredient| %>
-          <li><%= ingredient.ing_name %> ・・・・・ <%= ingredient.quantity %></li>
+        <% @post.ingredients.each do |ingredient| %>
+          <li><%= ingredient.name %> ・・・・・ <%= ingredient.quantity %></li>
         <% end %>
       </ul>
     </div>
@@ -56,11 +56,11 @@
   <div class="row mt-5">
     <ol>
       <h3>作り方</h3>
-      <% @post.how_to_makes.each do |make| %>
+      <% @post.instructions.each do |instruction| %>
         <li>
-          <%= make.explanation %><br>
-          <% if make.process_image.attached? %>
-            <%= image_tag make.get_process_image(560, 270), class: "img-fluid mt-3 mb-3" %>
+          <%= instruction.step %><br>
+          <% if instruction.process_image.present? %>
+            <%= image_tag instruction.get_process_image(560, 270), class: "img-fluid mt-3 mb-3" %>
           <% end %>
         </li>
       <% end %>

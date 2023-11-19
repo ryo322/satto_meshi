@@ -4,8 +4,8 @@ class Post < ApplicationRecord
   has_one_attached :post_image
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :recipe_ingredients, dependent: :destroy
-  has_many :how_to_makes, dependent: :destroy
+  has_many :ingredients, dependent: :destroy
+  has_many :instructions, dependent: :destroy
 
   #ページネーションで１ページに１０件表示する
   paginates_per 10
@@ -14,8 +14,8 @@ class Post < ApplicationRecord
   acts_as_taggable
 
   #親モデルが子モデルの属性を一緒に保存できるようにする
-  accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
-  accepts_nested_attributes_for :how_to_makes, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :ingredients, allow_destroy: true
+  accepts_nested_attributes_for :instructions, allow_destroy: true
 
   #いいねが多い順に並び替え
   scope :order_by_favorites, -> { order(favorites_count: :desc) }

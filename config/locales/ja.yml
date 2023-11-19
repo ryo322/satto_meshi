@@ -1,22 +1,10 @@
 ja:
-  devise:
-    failure:
-      user:
-        invalid: "メールアドレスまたはパスワードが正しくありません"
-    sessions:
-      user:
-        signed_in: 'ログインしました'
-        signed_up: 'サインアップしました'
-        signed_out: 'ログアウトしました'
-      signed_in: 'ログインしました'
-      signed_up: 'サインアップしました'
-      signed_out: 'ログアウトしました'
   activerecord:
     models:
       user: "ユーザー"
       post: "レシピ"
-      recipe_ingredient: "材料"
-      how_to_make: "作り方"
+      ingredients: "材料"
+      instructions: "作り方"
     attributes:
       user:
         name: "ユーザー名"
@@ -24,11 +12,11 @@ ja:
         password: "パスワード"
       post:
         name: "レシピ名"
-      recipe_ingredient:
-        ing_name: "材料の名前"
+      ingredients:
+        name: "材料名"
         quantity: "分量"
-      how_to_make:
-        explanation: "作り方の説明"
+      instructions:
+        step: "作り方の説明"
     errors:
       messages:
         not_saved: "データの保存に失敗しました。"
@@ -45,13 +33,26 @@ ja:
           attributes:
             name:
               blank: "を入力してください"
-      recipe_ingredient:
+      ingredients:
         attributes:
-          ing_name:
+          name:
             blank: "を入力してください"
           quantity:
-            blank: "を入力してください"
-      how_to_make:
+            blank: "を入力すしてください"
+      instructions:
         attributes:
-          explanation:
+          step:
             blank: "を入力してください"
+  devise:
+    failure:
+      user:
+        invalid: "メールアドレスまたはパスワードが正しくありません"
+    sessions:
+      user:
+        signed_in: 'ログインしました'
+        signed_out: 'ログアウトしました'
+      signed_in: 'ログインしました'
+      signed_out: 'ログアウトしました'
+    registrations:
+      user:
+        signed_up: '会員登録を行いました'

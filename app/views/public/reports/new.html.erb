@@ -1,10 +1,19 @@
-<h3>通報</h3>
-
-<%= form_with model: @report, url: user_reports_path(@user) do |f| %>
-  <%= f.radio_button :reportable_type, '投稿' %><%= f.label :投稿 %>
-  <%= f.radio_button :reportable_type, 'コメント' %><%= f.label :コメント %>
-  <div class="form-group">
-    <%= f.text_area :reason, rows:'3', class: "form-control" %>
-    <%= f.submit "通報する", class: "btn btn-danger" %>
+<div class="container mt-5">
+  <h2>通報</h2>
+  <div class="row">
+    <div class="col">
+      <h5>通報対象</h5>
+      <%= form_with model: @report, url: user_reports_path(@user) do |f| %>
+       <%= f.radio_button :reportable_type, '投稿' %><%= f.label :投稿 %>
+       <%= f.radio_button :reportable_type, 'コメント' %><%= f.label :コメント %>
+     <div class="form-group">
+       <h5>通報理由</h5>
+       <%= f.text_area :reason, rows:'3', class: "form-control" %>
+       <%= f.submit "通報する", class: "btn btn-danger" %>
+     </div>
+     <% end %>
+   </div>
   </div>
-<% end %>
+</div>
+
+

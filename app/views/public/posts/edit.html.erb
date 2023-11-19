@@ -36,14 +36,14 @@
         <div class="recipe-ingredients form-section">
           <div class="mx-auto">
             <h2>材料</h2>
-            <div id="recipe-ingredients">
-              <%= link_to_add_association "+材料を追加", f, :recipe_ingredients,
+            <div id="ingredients">
+              <%= link_to_add_association "+材料を追加", f, :ingredients,
                 data: {
-                  association_insertion_node: '#recipe-ingredients',
+                  association_insertion_node: '#ingredients',
                   association_insertion_method: 'append'
                 } %>
-              <%= f.fields_for :recipe_ingredients do |t| %>
-                <%= render "public/posts/recipe_ingredient_fields", f: t %>
+              <%= f.fields_for :ingredients do |t| %>
+                <%= render "ingredient_fields", f: t %>
               <% end %>
             </div>
           </div>
@@ -53,14 +53,14 @@
       <div class="col-6">
         <div class="mx-auto form-section">
           <h2>作り方</h2>
-          <div id="how-to-makes">
-            <%= link_to_add_association "+工程を追加", f, :how_to_makes,
+          <div id="instructions">
+            <%= link_to_add_association "+工程を追加", f, :instructions,
               data: {
-                association_insertion_node: '#how-to-makes',
+                association_insertion_node: '#instructions',
                 association_insertion_method: 'append'
               } %>
-            <%= f.fields_for :how_to_makes do |t| %>
-              <%= render "public/posts/how_to_make_fields", f: t %>
+            <%= f.fields_for :instructions do |t| %>
+              <%= render "instruction_fields", f: t %>
             <% end %>
           </div>
         </div>

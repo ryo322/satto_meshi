@@ -1,7 +1,9 @@
 <div class="nested-fields">
   <div class="row mx-auto">
     <div class="col-6">
-      <%= f.text_field :ing_name, class: "form-control", placeholder: "材料" %>
+     <div class="nested-fields">
+       <%= f.text_field :name, class: "form-control", placeholder: "材料" %>
+     </div>
     </div>
     <div class="col-3">
       <%= f.text_field :quantity, class: "form-control", placeholder: "分量" %>

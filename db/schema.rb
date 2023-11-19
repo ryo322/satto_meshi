@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_17_071454) do
+ActiveRecord::Schema.define(version: 2023_11_19_024603) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,14 +67,22 @@ ActiveRecord::Schema.define(version: 2023_11_17_071454) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "how_to_makes", force: :cascade do |t|
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "quantity", null: false
     t.integer "post_id", null: false
-    t.text "explanation", null: false
-    t.string "process_image"
-    t.integer "order_no"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_how_to_makes_on_post_id"
+    t.index ["post_id"], name: "index_ingredients_on_post_id"
+  end
+
+  create_table "instructions", force: :cascade do |t|
+    t.text "step", null: false
+    t.integer "post_id", null: false
+    t.string "process_image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_instructions_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -86,15 +94,6 @@ ActiveRecord::Schema.define(version: 2023_11_17_071454) do
     t.integer "favorites_count", default: 0
     t.string "tag"
     t.integer "cached_votes_total"
-  end
-
-  create_table "recipe_ingredients", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.string "ing_name", null: false
-    t.string "quantity", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_recipe_ingredients_on_post_id"
   end
 
   create_table "reports", force: :cascade do |t|
@@ -165,8 +164,8 @@ ActiveRecord::Schema.define(version: 2023_11_17_071454) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "how_to_makes", "posts"
-  add_foreign_key "recipe_ingredients", "posts"
+  add_foreign_key "ingredients", "posts"
+  add_foreign_key "instructions", "posts"
   add_foreign_key "taggings", "tags"
   add_foreign_key "user_saved_posts", "posts"
   add_foreign_key "user_saved_posts", "users"
