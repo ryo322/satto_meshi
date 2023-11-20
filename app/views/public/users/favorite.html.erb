@@ -6,7 +6,7 @@
           <thead class="bg-light">
             <%= render 'public/posts/post_thead' %>
           </thead>
-          <tbody>
+          <tbody class="tbody">
             <% @favorited_posts.each do |post| %>
               <%= render partial: 'public/posts/post_tbody', locals: { post: post } %>
             <% end %>

@@ -10,6 +10,7 @@ class Favorite < ApplicationRecord
   
 private
 
+
   def update_post_favorites_count
     post.update_favorites_count
   end

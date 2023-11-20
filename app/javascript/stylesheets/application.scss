@@ -21,13 +21,15 @@
 }
 
 body {
-  background-image: url('/assets/bg.jpeg');
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
 main {
+  background-image: url('/assets/4978500_l.jpg');
+  background-size: cover;
+  background-attachment: fixed;
   flex: 1;
 }
 
@@ -89,6 +91,7 @@ footer {
 }
 
 .comment-box {
+  background-color: rgba(250, 250, 250, 1);
   border: 1px solid #ccc;
   padding: 10px;
   margin: 10px 0;
@@ -99,6 +102,10 @@ footer {
 .date-box {
   margin-top: 10px;
   color: #555;
+}
+
+.tbody {
+  background-color: rgba(250, 250, 250, 0.8);
 }
 
 .image {
@@ -118,4 +125,8 @@ ol li {
   border-bottom: 3px solid #ccc;
   padding-bottom: 10px;
   margin-bottom: 10px;
+}
+
+.pagination {
+  justify-content: center;
 }
