@@ -1,6 +1,6 @@
 <% if @post.favorited_by?(current_user) %>
   <h4>
-    <%= link_to post_favorite_path(@post), method: :delete, remote: true do %>
+    <%= link_to post_favorite_path(@post), style: "color: red", method: :delete, remote: true do %>
       ♥ <%= @post.favorites.count %>いいね
     <% end %>
   </h4>
