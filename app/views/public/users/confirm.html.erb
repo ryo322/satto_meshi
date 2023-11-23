@@ -5,11 +5,13 @@
       <p class="my-4">退会すると、いいねやコメントができなくなり</br>
       マイページへのアクセスもできなくなります。</br>
       退会する場合は「退会する」をクリックしてください。</p>
-      
+
       <table class="table table-borderless">
        <tr>
          <td><%= link_to "退会しない", user_path, class: 'btn btn-primary btn-lg' %></td>
-         <td><%= link_to "退会する", withdraw_users_path, method: :PATCH, "data-confirm" => "本当に退会しますか？", class: 'btn btn-danger btn-lg' %></td>
+         <% unless current_user && current_user.email == 'guest@example.com' %>
+          <td><%= link_to "退会する", withdraw_users_path, method: :PATCH, "data-confirm" => "本当に退会しますか？", class: 'btn btn-danger btn-lg' %></td>
+         <% end %>
        </tr>
       </table>
     </div>

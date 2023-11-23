@@ -19,7 +19,9 @@
           </tr>
           <tr>
             <td></td>
-            <td><%= f.submit "編集する", class: "btn btn-success" %></td>
+            <% unless current_user && current_user.email == 'guest@example.com' %>
+             <td><%= f.submit "編集する", class: "btn btn-success" %></td>
+            <% end %>
            <td><%= link_to "退会する", confirm_user_path(current_user), class:'btn btn-danger btn-lg' %></td>
           </tr>
         </table>
