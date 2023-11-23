@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col">
       <h5>通報対象</h5>
-      <%= form_with model: @report, url: user_reports_path(@user) do |f| %>
+      <%= form_with model: @report, url: post_reports_path(@post) do |f| %>
        <%= f.radio_button :reportable_type, '投稿' %><%= f.label :投稿 %>
        <%= f.radio_button :reportable_type, 'コメント' %><%= f.label :コメント %>
      <div class="form-group">

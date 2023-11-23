@@ -1,7 +1,7 @@
 <div class="container">
   <%= render 'flash/notice' %>
   <%= render 'alert' %>
-  
+
   <div class="row my-5 under-line">
     <div class="col-6">
       <h2>レシピ名：<%= @post.name %></h2>
@@ -12,7 +12,7 @@
         <% end %>
       </div>
     </div>
-    
+
     <div class="col-2">
       <% if user_signed_in? && @post.user != current_user %>
         <div class="d-flex justify-content-between mt-2">
@@ -20,9 +20,11 @@
             <%= render 'favorite', post: @post %>
           </div>
         </div>
+      <% elsif admin_signed_in? %>
+        <%= link_to "レシピ削除", post_path(@post.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger" %>
       <% end %>
     </div>
-    
+
     <div class="col-4">
       <% if @user == current_user %>
         <%= link_to "レシピ編集", edit_post_path(@post), class:"btn btn-success" %>
@@ -30,9 +32,9 @@
       <% else %>
         <h2>投稿者：<%= link_to @user.name, user_path(@user) %></h2>
       <% end %>
-      
+
       <% if user_signed_in? && @post.user != current_user %>
-        <h6><%= link_to raw('<i class="fa-solid fa-triangle-exclamation"></i>通報する'), new_user_report_path(@post.user) %></h6>
+        <h6><%= link_to raw('<i class="fa-solid fa-triangle-exclamation"></i>通報する'), new_post_report_path(@post) %></h6>
       <% end %>
     </div>
   </div>
@@ -88,7 +90,7 @@
           <div class="date-box">
             <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
             <% if user_signed_in? && comment.user != current_user %>
-              <%= link_to raw('<i class="fa-solid fa-triangle-exclamation"></i>通報'), new_user_report_path(comment.user) %>
+              <h6><%= link_to raw('<i class="fa-solid fa-triangle-exclamation"></i>通報する'), new_post_report_path(@post) %></h6>
             <% end %>
             <% if admin_signed_in? %>
               <%= link_to "コメント削除", post_comment_path(@post, comment), method: :delete %>

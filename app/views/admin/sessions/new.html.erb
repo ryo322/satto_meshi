@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-start">
     <div class="col-6">
-      <h2 class="bg-brown my-5 col-6">管理者ログイン</h2> 
+      <h2 class="bg-brown my-5 col-6">管理者ログイン</h2>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <table class="table table-borderless">
           <tr>
@@ -14,7 +14,7 @@
           </tr>
           <tr>
             <td></td>
-            <td> <%= f.submit "ログイン" %></td>
+            <td> <%= f.submit "ログイン", class:"btn btn-primary" %></td>
           </tr>
         </table>
         <% end %>

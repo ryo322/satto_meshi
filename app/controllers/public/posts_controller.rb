@@ -58,10 +58,11 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy
+   @user = current_user
    @post = Post.find(params[:id])
    @post.destroy
    flash[:notice] = "レシピを削除しました"
-   redirect_to posts_path
+   redirect_to  root_path
   end
 
 private

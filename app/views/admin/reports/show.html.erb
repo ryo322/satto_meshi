@@ -9,7 +9,7 @@
         </tr>
         <tr>
           <td>通報対象</td>
-          <td><%= @report.reported.name %></td>
+          <td><%= @report.reportable_type %></td>
         </tr>
         <tr>
           <td>理由</td>
@@ -23,7 +23,7 @@
           <td><%= @report.confirmed ? '確認済み' : '未確認' %></td>
           <td>
             <% unless @report.confirmed %>
-              <%= link_to '確認する', confirm_admin_report_path(@report), method: :patch %>
+              <%= link_to '確認', confirm_admin_report_path(@report), method: :patch %>
             <% end %>
           </td>
         </tr>

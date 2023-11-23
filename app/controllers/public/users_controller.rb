@@ -31,7 +31,6 @@ class Public::UsersController < ApplicationController
 
   def withdraw
     @user = current_user
-    is_matching_login_user
     @user.update(is_deleted: true)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"

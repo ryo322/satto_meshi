@@ -35,13 +35,12 @@ scope module: :public do
     get 'favorited_posts', on: :member
     get 'confirm', on: :member
     patch 'withdraw', on: :collection
-    resources :reports, only: [:new, :create]
   end
 
   resources :posts do
   resource :favorite, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
-  resource :saved_post, only: [:create, :destroy]
+  resources :reports, only: [:new, :create]
 end
 
 end
