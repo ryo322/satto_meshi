@@ -47,6 +47,8 @@ ja:
     failure:
       user:
         invalid: "メールアドレスまたはパスワードが正しくありません"
+        inactive: '無効なユーザーです'
+      inactive: '無効なユーザーです'
     sessions:
       user:
         signed_in: 'ログインしました'
