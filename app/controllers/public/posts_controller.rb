@@ -28,7 +28,7 @@ class Public::PostsController < ApplicationController
      elsif params[:order_by_favorites]
        @posts = Post.order_by_favorites
      elsif params[:rand]
-       @posts = Post.order(Arel.sql('RAND()'))
+       @posts = Post.order(Arel.sql('RANDOM()'))
      else
        @posts = Post.all
      end
