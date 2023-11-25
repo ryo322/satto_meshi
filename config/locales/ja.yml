@@ -48,6 +48,7 @@ ja:
       user:
         invalid: "メールアドレスまたはパスワードが正しくありません"
         inactive: '無効なユーザーです'
+        not_found_in_database: 'ユーザーが見つかりませんでした'
       inactive: '無効なユーザーです'
     sessions:
       user:
