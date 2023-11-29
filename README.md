@@ -22,7 +22,8 @@ SNSにはサッと作れて美味しそうなレシピが流れてくること�
 ## 設計書
  ・ER図:
  
- ・テーブル定義所:https://docs.google.com/spreadsheets/d/1nA54jvZMPtZHJIZilKtjA7XMtryXTEmC/edit#gid=22058163
+ ・テーブル定義書
+   https://docs.google.com/spreadsheets/d/1nA54jvZMPtZHJIZilKtjA7XMtryXTEmC/edit#gid=22058163
 ​
 ## 開発環境
 - OS：Linux(CentOS)
