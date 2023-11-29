@@ -19,12 +19,6 @@ SNSにはサッと作れて美味しそうなレシピが流れてくること�
 ・レシピを探す時
 ・そのレシピの感想を知りたい時
 ​
-## 設計書
- ・ER図:
- 
- ・テーブル定義書
-   https://docs.google.com/spreadsheets/d/1nA54jvZMPtZHJIZilKtjA7XMtryXTEmC/edit#gid=22058163
-​
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
