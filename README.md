@@ -20,7 +20,8 @@ SNSにはサッと作れて美味しそうなレシピが流れてくること�
 ・そのレシピの感想を知りたい時
 ​
 ## 設計書
-
+ ・ER図:https://app.diagrams.net/#G1atajHLgiwdnIGE_3fHnNjcY94BAiTtvf
+ ・テーブル定義所:https://docs.google.com/spreadsheets/d/1nA54jvZMPtZHJIZilKtjA7XMtryXTEmC/edit#gid=22058163
 ​
 ## 開発環境
 - OS：Linux(CentOS)
