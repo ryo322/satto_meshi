@@ -29,6 +29,8 @@ class Public::PostsController < ApplicationController
        @posts = Post.order_by_favorites
      elsif params[:random]
        @posts = Post.order(Arel.sql('RAND()'))
+     elsif params[:tag]
+       @posts = Post.tagged_with(params[:tag])
      else
        @posts = Post.all
      end
