@@ -7,9 +7,6 @@ class Post < ApplicationRecord
   has_many :ingredients, dependent: :destroy
   has_many :instructions, dependent: :destroy
 
-  #ページネーションで１ページに１０件表示する
-  paginates_per 10
-
   #タグを実装するもの
   acts_as_taggable
 

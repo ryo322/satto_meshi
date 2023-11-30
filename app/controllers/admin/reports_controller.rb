@@ -2,6 +2,7 @@ class Admin::ReportsController < ApplicationController
   def index
     @unconfirmed_reports_count = Report.unconfirmed.count
     @reports = Report.all
+    @reports = @reports.page(params[:page]).per(10)
   end
 
   def show

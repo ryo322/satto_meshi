@@ -34,7 +34,7 @@ class Public::PostsController < ApplicationController
      else
        @posts = Post.all
      end
-    @posts = @posts.page(params[:page])
+    @posts = @posts.page(params[:page]).per(10)
   end
 
   def show

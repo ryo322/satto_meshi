@@ -1,31 +1,45 @@
 <div class="container">
-   <%= render 'flash/notice' %>
+  <%= render 'flash/notice' %>
   <div class="row my-5">
     <div class="col-6">
-     <%= render 'info', user: @user %>
+      <%= render 'info', user: @user %>
     </div>
   </div>
   <div class="row">
-    <h4>
-      <%= link_to '投稿一覧', user_path(@user, view: 'my_posts') %>
-       ｜
-      <%= link_to 'いいねした投稿一覧', user_path(@user, view: 'favorited_posts') %>
-    </h4>
+    <div class="col">
+      <h4>
+        <%= link_to '投稿一覧', user_path(@user, view: 'my_posts') %>
+         ｜
+        <%= link_to 'いいねした投稿一覧', user_path(@user, view: 'favorited_posts') %>
+      </h4>
+      <h5>
+        <% if params[:view] == 'favorited_posts' %>
+          <%= @user.name %>さんのいいねした投稿一覧<i class="fa-regular fa-paper-plane" style="color: #0c0c0e;"></i>
+        <% else %>
+          <%= @user.name %>さんの投稿一覧<i class="fa-regular fa-paper-plane" style="color: #0c0c0e;"></i>
+        <% end %>
+      </h5>
+    </div>
     <table class="table">
       <thead class="bg-light">
         <%= render 'public/posts/post_thead' %>
       </thead>
       <tbody class="tbody">
-        <% if params[:view] == 'my_posts' %>
-          <% @user.posts.each do |post| %>
+        <% if params[:view] == 'favorited_posts' %>
+          <% @favorited_posts.each do |post| %>
             <%= render partial: 'public/posts/post_tbody', locals: { post: post } %>
           <% end %>
         <% else %>
-          <% @favorited_posts.each do |post| %>
+          <% @user_posts.each do |post| %>
             <%= render partial: 'public/posts/post_tbody', locals: { post: post } %>
           <% end %>
         <% end %>
       </tbody>
     </table>
+    <% if params[:view] == 'favorited_posts' %>
+      <%= paginate @favorited_posts %>
+    <% else %>
+      <%= paginate @user_posts %>
+    <% end %>
   </div>
 </div>
