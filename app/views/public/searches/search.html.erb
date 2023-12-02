@@ -1,26 +1,27 @@
 <div class="container">
   <div class="row">
-    <div class="col-7">
+    <div class="col-9">
       <h2>検索結果</h2>
       <% if @results.present? %>
         <table class="table table-hover table-inverse">
-          <thead>
+          <thead class="bg-light">
             <tr>
               <% case @range %>
                 <% when "ユーザー" %>
-                  <th>ユーザー名</th>
-                  <th>自己紹介</th>
+                  <th style="width: 30%;">ユーザー名</th>
+                  <th style="width: 70%;">自己紹介</th>
                 <% when "レシピ" %>
-                  <th>レシピ画像</th>
-                  <th>レシピ名</th>
+                  <th style="width: 20%;">レシピ画像</th>
+                  <th style="width: 30%;">レシピ名</th>
+                  <th style="width: 50%;">説明</th>
                 <% when "タグ" %>
-                  <th>レシピ画像</th>
-                  <th>レシピ名</th>
-                  <th>登録タグ</th>
+                  <th style="width: 20%;">レシピ画像</th>
+                  <th style="width: 30%;">レシピ名</th>
+                  <th style="width: 50%;">登録タグ</th>
               <% end %>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="tbody">
             <% @results.each do |result| %>
               <tr>
                 <% case @range %>
@@ -42,6 +43,9 @@
                         <%= result.name %></br>
                       <% end %>
                     </td>
+                    <td>
+                      <%= result.introduction %>
+                    </td>
                   <% when "タグ" %>
                     <td>
                       <%= link_to post_path(result.id) do %>
@@ -53,8 +57,10 @@
                         <%= result.name %></br>
                       <% end %>
                     </td>
-                    <td>
-                      #<%= result.tag_list %>
+                    <td class="d-flex flex-wrap">
+                      <% result.tags.each do |tag| %>
+                        <%= link_to "##{tag.name}", posts_path(tag: tag.name), class: 'btn btn-outline-primary mx-2 my-1' %>
+                      <% end %>
                     </td>
                 <% end %>
               </tr>
