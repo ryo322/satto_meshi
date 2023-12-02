@@ -19,9 +19,6 @@ SNSにはサッと作れて美味しそうなレシピが流れてくること�
 ・レシピを探す時
 ・そのレシピの感想を知りたい時
 ​
-## 設計書
-
-​
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL

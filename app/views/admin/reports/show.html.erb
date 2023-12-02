@@ -20,10 +20,10 @@
           <td><%= @report.reporter.name %></td>
         </tr>
         <tr>
-          <td><%= @report.confirmed ? '確認済み' : '未確認' %></td>
+          <td><%= @report.confirmed ? '確認済み' : '確認ステータス' %></td>
           <td>
             <% unless @report.confirmed %>
-              <%= link_to '確認', confirm_admin_report_path(@report), method: :patch %>
+              <%= link_to '確認済みに更新', confirm_admin_report_path(@report), method: :patch %>
             <% end %>
           </td>
         </tr>

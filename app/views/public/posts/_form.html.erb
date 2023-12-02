@@ -2,8 +2,8 @@
   <div class="col">
     <h2>レシピ名：<%= f.text_field :name, placeholder: "料理名", size: "31x1" %></h2>
     <div class="form-group">
-      <%= f.label :tag_list, "タグ" %>
-      <%= f.text_field :tag_list, class: 'form-control' %>
+      <%= f.label :tag_list, "タグ（複数登録したい場合は「,」で区切ってください）" %>
+      <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control" %>
     </div>
   </div>
 </div>

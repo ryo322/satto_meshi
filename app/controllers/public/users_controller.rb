@@ -1,13 +1,9 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(3)
-  end
-  
-  def favorited_posts
-    @user = User.find(params[:id])
     @favorited_posts = @user.favorited_posts
-    render 'favorite'
+    @favorited_posts = @user.favorited_posts.page(params[:page]).per(10)
+    @user_posts = @user.posts.page(params[:page]).per(10)
   end
 
   def edit
@@ -36,13 +32,13 @@ class Public::UsersController < ApplicationController
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
   end
-  
+
 private
-  
+
   def user_params
     params.require(:user).permit(:name, :email, :introduction, :profile_image)
   end
-  
+
   def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id

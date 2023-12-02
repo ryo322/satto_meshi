@@ -2,8 +2,12 @@
   <%= render 'flash/notice' %>
   <div class="row">
     <div class="col">
-      <h2 class="mt-5 text-left bg-brown">レシピ一覧<i class="fa-solid fa-utensils"></i></h2>
-      <p><%= link_to '新しい順', posts_path(latest: "true") %> ｜ <%= link_to '評価の高い順', posts_path(order_by_favorites: "true") %> ｜ <%= link_to 'ランダムに並び替え', posts_path(random: "true") %></p>
+      <% if params[:tag] %>
+        <h2 class="mt-5 text-left"><%= "##{params[:tag]} のレシピ一覧" %><i class="fa-solid fa-utensils"></i></h2>
+      <% else %>
+        <h2 class="mt-5 text-left">レシピ一覧<i class="fa-solid fa-utensils"></i></h2>
+        <p><%= link_to '新しい順', posts_path(latest: "true") %> ｜ <%= link_to '評価の高い順', posts_path(order_by_favorites: "true") %> ｜ <%= link_to 'ランダムに並び替え', posts_path(random: "true") %></p>
+      <% end %>
       <table class="table">
         <thead class="bg-light">
           <%= render 'post_thead' %>

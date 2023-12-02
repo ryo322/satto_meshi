@@ -14,11 +14,11 @@
   </td>
   <td class="d-flex flex-wrap">
     <% post.tags.each do |tag| %>
-      #<%= tag.name %>
+      <%= link_to "##{tag.name}", posts_path(tag: tag.name), class: 'btn btn-outline-primary mx-2 my-1' %>
     <% end %>
   </td>
   <td>
-    いいね:<%= post.favorites_count %>件
+    いいね：<%= post.favorites_count %>件
   </td>
   <td>
     コメント件数：<%= post.comments.count %>件
