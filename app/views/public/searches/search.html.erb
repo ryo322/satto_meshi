@@ -8,8 +8,9 @@
             <tr>
               <% case @range %>
                 <% when "ユーザー" %>
-                  <th style="width: 30%;">ユーザー名</th>
-                  <th style="width: 70%;">自己紹介</th>
+                  <th style="width: 20%;">プロフィール画像</th>
+                  <th style="width: 20%;">ユーザー名</th>
+                  <th style="width: 60%;">自己紹介</th>
                 <% when "レシピ" %>
                   <th style="width: 20%;">レシピ画像</th>
                   <th style="width: 30%;">レシピ名</th>
@@ -26,6 +27,9 @@
               <tr>
                 <% case @range %>
                   <% when "ユーザー" %>
+                    <td>
+                      <%= image_tag result.get_profile_image(100, 100), class: 'rounded-circle' %>
+                    </td>
                     <td>
                       <%= link_to user_path(result.id) do %>
                         <%= result.name %>
@@ -73,4 +77,3 @@
     </div>
   </div>
 </div>
-

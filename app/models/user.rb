@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one_attached :profile_image
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -12,6 +13,15 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :email, presence: true
+
+  def get_profile_image(width, height)
+    unless profile_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpg')
+    end
+    #画像変種（variant）を生成し、resize_to_fillオプションを使用して、指定された幅と高さに画像をリサイズ
+    profile_image.variant(resize_to_fill: [width, height]).processed
+  end
 
   def active_for_authentication?
     super && (is_deleted == false)

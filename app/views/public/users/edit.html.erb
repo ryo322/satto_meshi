@@ -18,6 +18,10 @@
             <td><%= f.text_area :introduction, autofocus: true, autocomplete: "introduction" %></td>
           </tr>
           <tr>
+            <td><%= f.label :プロフィール画像 %></td>
+            <td><%= f.file_field :profile_image %></td>
+          </tr>
+          <tr>
             <td></td>
             <% unless current_user && current_user.email == 'guest@example.com' %>
              <td><%= f.submit "編集する", class: "btn btn-success" %></td>
