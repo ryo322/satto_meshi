@@ -23,14 +23,11 @@
   <div class="col-6 mx-auto">
     <h3>材料</h3>
     <div id="ingredients">
+      <%= link_to_add_association "+材料を追加", f, :ingredients,
+        data: {association_insertion_node: '#ingredients', association_insertion_method: 'append' } %>
       <%= f.fields_for :ingredients do |ingredient_form| %>
         <%= render 'ingredient_fields', f: ingredient_form %>
       <% end %>
-      <%= link_to_add_association "+材料を追加", f, :ingredients,
-                                  data: {
-                                    association_insertion_node: '#ingredients',
-                                    association_insertion_method: 'append'
-                                  } %>
     </div>
   </div>
 </div>
@@ -39,14 +36,11 @@
 <div class="row">
   <div class="col">
     <div id="instructions">
+      <%= link_to_add_association "+作り方を追加", f, :instructions,
+        data: {association_insertion_node: '#instructions', association_insertion_method: 'append' } %>
       <%= f.fields_for :instructions do |instruction_form| %>
         <%= render 'instruction_fields', f: instruction_form %>
       <% end %>
-      <%= link_to_add_association "+作り方を追加", f, :instructions,
-                                  data: {
-                                    association_insertion_node: '#instructions',
-                                    association_insertion_method: 'append'
-                                  } %>
     </div>
   </div>
 </div>
