@@ -1,7 +1,7 @@
 <tr>
   <td>
     <%= link_to post_path(post.id) do %>
-      <%= image_tag post.get_post_image(285,135) %>
+      <%= image_tag post.get_post_image(250,120) %>
     <% end %>
   </td>
   <td>
@@ -9,18 +9,18 @@
       <%= post.name %></br>
     <% end %>
   </td>
-  <td>
+  <td class="d-none d-sm-table-cell">
     <%= link_to post.user.name, user_path(post.user) %>
   </td>
-  <td class="d-flex flex-wrap">
+  <td class="d-none d-sm-flex flex-wrap">
     <% post.tags.each do |tag| %>
       <%= link_to "##{tag.name}", posts_path(tag: tag.name), class: 'btn btn-outline-primary mx-2 my-1' %>
     <% end %>
   </td>
-  <td>
+  <td class="d-none d-sm-table-cell">
     いいね：<%= post.favorites_count %>件
   </td>
-  <td>
+  <td class="d-none d-sm-table-cell">
     コメント件数：<%= post.comments.count %>件
   </td>
 </tr>
