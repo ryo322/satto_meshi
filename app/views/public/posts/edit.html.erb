@@ -1,13 +1,13 @@
 <div class="container">
   <%= render 'error' %>
   <div class="row">
-    <div class="col-3 mt-5">
+    <div class="col mt-5">
       <h3>レシピ編集</h3>
     </div>
   </div>
   <%= form_with(model: @post, local: true) do |f| %>
     <%= render 'form', f: f %>
-    <div class="row my-5 justify-content-end">
+    <div class="row my-5 justify-content-center">
       <%= f.submit "レシピを編集する", class:"btn btn-lg btn-success" %>
     </div>
   <% end %>

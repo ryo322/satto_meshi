@@ -5,17 +5,16 @@
   <div class="row my-5 under-line">
     <div class="col-12 col-sm-6">
       <h2>レシピ名：<%= @post.name %></h2>
-      <p>登録タグ <i class="fa-solid fa-tags"></i></p>
       <div class="d-flex flex-wrap">
-        <% @post.tags.each do |tag| %>
-          <%= link_to "##{tag.name}", posts_path(tag: tag.name), class: 'btn btn-outline-primary mx-2' %>
-        <% end %>
+        <p>登録タグ <i class="fa-solid fa-tags"></i></p>
+          <% @post.tags.each do |tag| %>
+            <%= link_to "##{tag.name}", posts_path(tag: tag.name), class: 'btn btn-outline-primary mx-2' %>
+          <% end %>
       </div>
     </div>
-
-    <div class="col-12 col-sm-2">
+    <div class="col-12 col-sm-2 mt-3">
       <% if user_signed_in? && @post.user != current_user %>
-        <div class="d-flex justify-content-between mt-2">
+        <div class="d-flex justify-content-between">
           <div id="favorite_buttons">
             <%= render 'favorite', post: @post %>
           </div>
@@ -25,13 +24,13 @@
       <% end %>
     </div>
 
-    <div class="col-12 col-sm-4">
+    <div class="col-12 col-sm-4 mt-3">
       <% if @user == current_user %>
         <%= link_to "レシピ編集", edit_post_path(@post), class:"btn btn-success" %>
-        ｜
+        　
         <%= link_to "レシピ削除", post_path(@post.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger" %>
       <% else %>
-        <h2>投稿者：<%= link_to @user.name, user_path(@user) %></h2>
+        <h4>投稿者：<%= link_to @user.name, user_path(@user) %></h4>
       <% end %>
 
       <% if user_signed_in? && @post.user != current_user %>
@@ -63,7 +62,7 @@
         <li>
           <%= instruction.step %><br>
           <% if instruction.process_image.present? %>
-            <%= image_tag instruction.get_process_image(560, 270), class: "img-fluid mt-3 mb-3" %>
+            <%= image_tag instruction.get_process_image(400, 200), class: "img-fluid mt-3 mb-3" %>
           <% end %>
         </li>
       <% end %>
@@ -82,7 +81,7 @@
   </div>
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 col-sm-5">
       <% @post.comments.order(created_at: :desc).each_with_index do |comment, index| %>
         <div class="comment-box">
           <%= "コメント: #{(@post.comments.count - index)}" %>

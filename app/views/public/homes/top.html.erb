@@ -1,57 +1,57 @@
 <div class="main-visual" style="background-image: url(<%= asset_path "mv.jpg"%>);">
- <%= render 'text' %>
+  <%= render 'text' %>
 </div>
 <div class="container">
-<%= render 'flash/notice' %>
+  <%= render 'flash/notice' %>
 </div>
-<div class="container my-3 wood" style="background-image: url(<%= asset_path "wood.jpg"%>);">
+<div class="container my-3 text-white" style="background-image: url(<%= asset_path "wood.jpg"%>);">
   <div class="row">
     <div class="col-12">
-      <h3 class="mt-5 ">新着レシピ</h3>
+      <h3 class="mt-5 text-center">新着レシピ</h3>
     </div>
     <% @posts.each_with_index do |post, index| %>
-      <% break if index >= 4 %>
-      <div class="col-2 mt-3">
-        <div class="card w-60 bg-transparent border-0">
+      <% break if index >= 5 %>
+      <div class="col-8 col-sm-6 col-md-2 mt-3 mx-auto">
+        <div class="card bg-transparent border-0">
           <%= link_to post_path(post.id), class: "card-link" do %>
             <%= image_tag post.get_post_image(100, 100), class: "card-img-top" %>
           <% end %>
-           <div class="card-body text-white" style="padding: 0;">
+          <div class="card-body text-white text-center" style="padding: 0;">
             <%= post.name %>
-           </div>
+          </div>
         </div>
       </div>
     <% end %>
-    <div class="col-4 text-center">
-      <% if user_signed_in? %>
-        <h1><%= link_to "レシピ一覧へ", posts_path, style: "color: white; text-decoration: underline;" %></h1>
-        <%= "　　" %>
-        <h1><%= link_to "レシピを投稿する", new_post_path, style: "color: white; text-decoration: underline;" %></h1>
-      <% else %>
-        <h3>ログインは<%= link_to "こちら", new_user_session_path, style: "color: white; text-decoration: underline;" %></h3>
-        <%= "　　" %>
-        <h3>新規会員登録は<%= link_to "こちら", new_user_registration_path, style: "color: white; text-decoration: underline;" %></h3>
-        <p>会員登録されますと、<br>投稿ができるようになり、レシピに対していいねやコメントができるようになります。</p>
-      <% end %>
-    </div>
   </div>
 
   <div class="row">
-    <div class="col-12 mt-2">
-      <h3>人気のレシピ</h3>
+    <div class="col-12 mt-5">
+      <h3 class="text-center">人気のレシピ</h3>
     </div>
-    <% @popular_posts = @posts.sort_by { |post| -post.favorites.count }.take(4) %>
+    <% @popular_posts = @posts.sort_by { |post| -post.favorites.count }.take(5) %>
     <% @popular_posts.each do |popular_post| %>
-      <div class="col-2 my-3">
+      <div class="col-8 col-sm-6 col-md-2 my-3 mx-auto">
         <%= link_to post_path(popular_post.id), class: "card-link" do %>
-          <div class="card w-60 bg-transparent border-0">
+          <div class="card bg-transparent border-0">
             <%= image_tag popular_post.get_post_image(100, 100), class: "card-img-top" %>
-            <div class="card-body text-white" style="padding: 0;">
+            <div class="card-body text-white text-center" style="padding: 0;">
               <%= popular_post.name %>
             </div>
           </div>
         <% end %>
       </div>
     <% end %>
+  </div>
+  <div class="col-12 text-center mt-3">
+    <% if user_signed_in? %>
+      <h1><%= link_to "レシピ一覧へ", posts_path, style: "color: white; text-decoration: underline;" %></h1>
+      <%= "　　" %>
+      <h1><%= link_to "レシピを投稿する", new_post_path, style: "color: white; text-decoration: underline;" %></h1>
+    <% else %>
+      <h3>ログインは<%= link_to "こちら", new_user_session_path, style: "color: white; text-decoration: underline;" %></h3>
+      <%= "　　" %>
+      <h3>新規会員登録は<%= link_to "こちら", new_user_registration_path, style: "color: white; text-decoration: underline;" %></h3>
+      <p>会員登録されますと、<br>投稿ができるようになり、レシピに対して<br>いいねやコメントができるようになります。</p>
+     <% end %>
   </div>
 </div>

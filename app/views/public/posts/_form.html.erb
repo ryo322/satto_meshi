@@ -1,26 +1,30 @@
 <div class="row my-5 under-line">
   <div class="col">
-    <h2>レシピ名：<%= f.text_field :name, placeholder: "料理名", size: "31x1" %></h2>
+    <h2>レシピ名：<%= f.text_field :name, placeholder: "料理名" %></h2>
     <div class="form-group">
-      <%= f.label :tag_list, "タグ（複数登録したい場合は「,」で区切ってください）" %>
+      <%= f.label :tag_list, "タグ（複数登録する場合は「,」で区切ってください）" %>
       <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control" %>
     </div>
   </div>
 </div>
 
 <div class="row my-5 under-line">
-  <div class="col-4">
+  <div class="col-12 col-md-5">
     <div class="form-section mx-auto image">
       <h4><%= f.label :post_image, "料理画像", style: "margin-right:75px;" %></h4>
       <%= f.file_field :post_image %>
     </div>
+  </div>
+  <div class="col-12 col-md-8">
     <div class="form-section mx-auto mt-5">
       <h4><%= f.label :introduction, "料理の説明", style: "margin-right:75px;" %></h4>
       <%= f.text_area :introduction, class: "form-control", placeholder: "紹介文を入力" %>
     </div>
   </div>
+</div>
 
-  <div class="col-6 mx-auto">
+<div class="row my-5 under-line">
+  <div class="col-12 col-md-6">
     <h3>材料</h3>
     <div id="ingredients">
       <%= link_to_add_association "+材料を追加", f, :ingredients,
@@ -30,11 +34,8 @@
       <% end %>
     </div>
   </div>
-</div>
-
-<h3>作り方</h3>
-<div class="row">
-  <div class="col">
+  <div class="col-12 col-md-6">
+    <h3>作り方</h3>
     <div id="instructions">
       <%= link_to_add_association "+作り方を追加", f, :instructions,
         data: {association_insertion_node: '#instructions', association_insertion_method: 'append' } %>
