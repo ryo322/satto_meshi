@@ -1,10 +1,10 @@
 <div class="container">
   <%= render 'flash/notice' %>
   <div class="row my-5">
-    <div class="col-3">
+    <div class="col-5 col-sm-3">
       <%= image_tag @user.get_profile_image(200, 200), class: 'rounded-circle img-fluid' %>
     </div>
-    <div class="col-9">
+    <div class="col-12 col-sm-9">
       <%= render 'info', user: @user %>
     </div>
   </div>

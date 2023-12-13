@@ -1,13 +1,13 @@
 <div class="container">
   <%= render 'flash/notice' %>
   <div class="row mt-5">
-    <div class="col-6 d-flex flex-column justify-content-center align-items-center" style="height: 200px;">
+    <div class="col-6 d-flex flex-column justify-content-center align-items-center">
       <%= link_to admin_users_path, class: "btn btn-light btn-block text-center" do %>
         <i class="fa-solid fa-users fa-8x" style="color: #728597; margin-bottom: 10px"></i><br>
         <span style="font-size: 48px;">ユーザー管理</span>
       <% end %>
     </div>
-    <div class="col-6 d-flex flex-column justify-content-center align-items-center" style="height: 200px;">
+    <div class="col-6 d-flex flex-column justify-content-center align-items-center">
       <%= link_to admin_reports_path, class: "btn btn-light btn-block text-center" do %>
         <i class="fa-solid fa-triangle-exclamation fa-8x" style="color: #728597; margin-bottom: 10px"></i><br>
         <span style="font-size: 48px;"><%= "未確認の通報: #{@unconfirmed_reports_count}件" %></span>

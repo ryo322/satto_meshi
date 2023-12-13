@@ -27,7 +27,7 @@
     <div class="col-12 col-sm-4 mt-3">
       <% if @user == current_user %>
         <%= link_to "レシピ編集", edit_post_path(@post), class:"btn btn-success" %>
-        　
+
         <%= link_to "レシピ削除", post_path(@post.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger" %>
       <% else %>
         <h4>投稿者：<%= link_to @user.name, user_path(@user) %></h4>
@@ -76,7 +76,7 @@
         <%= f.submit "送信する" %>
       <% end %>
     <% else %>
-      <p>ログイン、会員登録をおこうなうとコメントができるようになります</p>
+      <p>ログイン、会員登録後にコメントができるようになります</p>
     <% end %>
   </div>
 
