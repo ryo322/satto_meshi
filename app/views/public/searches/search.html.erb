@@ -10,15 +10,15 @@
                 <% when "ユーザー" %>
                   <th style="width: 20%;">プロフィール画像</th>
                   <th style="width: 20%;">ユーザー名</th>
-                  <th style="width: 60%;">自己紹介</th>
+                  <th style="width: 60%;" class="d-none d-sm-table-cell">自己紹介</th>
                 <% when "レシピ" %>
                   <th style="width: 20%;">レシピ画像</th>
                   <th style="width: 30%;">レシピ名</th>
-                  <th style="width: 50%;">説明</th>
+                  <th style="width: 50%;" class="d-none d-sm-table-cell">説明</th>
                 <% when "タグ" %>
                   <th style="width: 20%;">レシピ画像</th>
                   <th style="width: 30%;">レシピ名</th>
-                  <th style="width: 50%;">登録タグ</th>
+                  <th style="width: 50%;" class="d-none d-sm-table-cell">登録タグ</th>
               <% end %>
             </tr>
           </thead>
@@ -35,11 +35,11 @@
                         <%= result.name %>
                       <% end %>
                     </td>
-                    <td><%= result.introduction %></td>
+                    <td class="d-none d-sm-table-cell"><%= result.introduction %></td>
                   <% when "レシピ" %>
                     <td>
                       <%= link_to post_path(result.id) do %>
-                        <%= image_tag result.get_post_image(285,135) %>
+                        <%= image_tag result.get_post_image(150,150) %>
                       <% end %>
                     </td>
                     <td>
@@ -47,13 +47,13 @@
                         <%= result.name %></br>
                       <% end %>
                     </td>
-                    <td>
+                    <td class="d-none d-sm-table-cell">
                       <%= result.introduction %>
                     </td>
                   <% when "タグ" %>
                     <td>
                       <%= link_to post_path(result.id) do %>
-                        <%= image_tag result.get_post_image(285,135) %>
+                        <%= image_tag result.get_post_image(150,150) %>
                       <% end %>
                     </td>
                     <td>
@@ -61,7 +61,7 @@
                         <%= result.name %></br>
                       <% end %>
                     </td>
-                    <td class="d-flex flex-wrap">
+                    <td class="d-none d-sm-flex flex-wrap">
                       <% result.tags.each do |tag| %>
                         <%= link_to "##{tag.name}", posts_path(tag: tag.name), class: 'btn btn-outline-primary mx-2 my-1' %>
                       <% end %>
