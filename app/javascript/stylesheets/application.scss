@@ -44,7 +44,7 @@ footer {
 }
 
 .main-visual-content {
-  width: 60%;
+  width: 100%;
   height: 300px;
   background-color: rgba(0, 0, 0, 0.5);
   text-align: center;
@@ -54,34 +54,8 @@ footer {
 
 .main-visual-text {
   color: #fff;
-  line-height: 2;
-}
-
-@media (max-width: 767px) {
-  .main-visual {
-    width: 100%;
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-  }
-}
-
-@media (max-width: 767px) {
-  .main-visual-content {
-    width: 100%;
-    height: 200px;
-    background-color: rgba(0, 0, 0, 0.5);
-    text-align: center;
-    padding-top: 40px;
-    position: center;
-  }
-}
-
-@media (max-width: 767px) {
-  .main-visual-text {
-    font-size: 14px;
-    line-height: 2;
-  }
+  font-size: 18px;
+  line-height: 1.7;
 }
 
 .bg-logo {
