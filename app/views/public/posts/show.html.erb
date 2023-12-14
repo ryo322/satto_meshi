@@ -85,7 +85,7 @@
       <% @post.comments.order(created_at: :desc).each_with_index do |comment, index| %>
         <div class="comment-box">
           <%= "コメント: #{(@post.comments.count - index)}" %>
-          <p style="color: <%= comment.score > 0 ? 'green' : (comment.score < 0 ? 'red' : 'black') %>;">評価：<%= comment.score %></p>
+          
           <%= comment.comment %>
           <div class="date-box">
             <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
