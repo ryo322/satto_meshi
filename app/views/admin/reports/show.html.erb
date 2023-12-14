@@ -32,8 +32,16 @@
   </div>
 
   <% if @report.reportable_type == '投稿' %>
-    <h3><%= link_to "投稿の詳細", post_path(@report.reported) %></h3>
+    <% if @report.reported.present? %>
+      <h3><%= link_to "投稿の詳細", post_path(@report.reported) %></h3>
+    <% else %>
+      <p>報告対象の投稿が存在しません。</p>
+    <% end %>
   <% elsif @report.reportable_type == 'コメント' %>
-    <h3><%= link_to "コメントの詳細", post_path(@report.reported) %></h3>
+    <% if @report.reported.present? %>
+      <h3><%= link_to "コメントの詳細", comment_path(@report.reported) %></h3>
+    <% else %>
+      <p>報告対象のコメントが存在しません。</p>
+    <% end %>
   <% end %>
 </div>
