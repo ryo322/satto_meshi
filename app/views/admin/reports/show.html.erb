@@ -39,7 +39,7 @@
     <% end %>
   <% elsif @report.reportable_type == 'コメント' %>
     <% if @report.reported.present? %>
-      <h3><%= link_to "コメントの詳細", comment_path(@report.reported) %></h3>
+      <h3><%= link_to "コメントの詳細", post_path(@report.reported) %></h3>
     <% else %>
       <p>報告対象のコメントが存在しません。</p>
     <% end %>
